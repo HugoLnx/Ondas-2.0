@@ -8,7 +8,7 @@ Diferente do [projeto inicial](http://github.com/HugoLnx/Ondas) "Ondas 1.0",
 este sera desenvolvido utilizando...
 
 *   _swing_ como GUI;
-*   _jruby_ para utilização do _swing_;
+*   _jruby_ para utilizacao do _swing_;
 *   _cucumber_ e _rspec_ para criacao de testes.
 
 ### Sobre mim ###
