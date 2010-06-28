@@ -8,6 +8,6 @@ module Ondas2
 		def o_objeto_de_classe_e_nome(tipo,nome)
 			self[tipo][nome]
 		end
-		alias o_de_classe_e_nome o_objeto_de_tipo_e_nome
+		alias o_de_classe_e_nome o_objeto_de_classe_e_nome
 	end
 end
