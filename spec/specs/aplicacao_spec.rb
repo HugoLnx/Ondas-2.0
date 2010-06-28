@@ -14,6 +14,11 @@ module Ondas2
 			it 'deveria ser iniciavel' do
 				lambda{@app.inicia}.should_not raise_error
 			end
+			
+			it 'deveria ter componentes' do
+				@app.componentes.should_not be_nil
+			end
+
 		end
 	end
 end
