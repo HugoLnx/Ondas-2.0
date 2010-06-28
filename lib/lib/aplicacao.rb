@@ -1,6 +1,8 @@
 module Ondas2
-	module Aplicacao
+	class Aplicacao
+		attr_reader :componentes
 		def self.inicia
+			@componentes = Componentes.new
 		end
 	end
 end
