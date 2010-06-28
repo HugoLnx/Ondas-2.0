@@ -12,15 +12,16 @@ describe String do
 		
 		context 'ao ser convertida para simbolo' do
 			before do
-				@nome_sym = 'HUgo'.para_sym
+				@nome = 'HUg  o  '
+				@nome_sym = @nome.para_sym
 			end
 		
 			it 'deveria ter todos os caracteres minusculos' do
 				@nome_sym.should be_in_downcase
 			end
 			
-			it 'nao deveria ter espacos em branco' do
-				@nome_sym.should_not have_blankspaces
+			it 'deveria ter os espacos em branco substituidos por underline' do
+				@nome_sym.should have_underline_when_blankspace_exists_in @nome
 			end
 		end
 	end
