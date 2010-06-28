@@ -12,7 +12,7 @@ module Ondas2
 			end
 			
 			it 'deveria ser iniciavel' do
-				lambda{app.inicia}.should_not raise_error
+				lambda{@app.inicia}.should_not raise_error
 			end
 		end
 	end
