@@ -22,12 +22,12 @@ module Ondas2
 				end
 				
 				it 'deveria poder retornar esse objeto pelo seu nome e classe' do
-					obj = @grupo.o_objeto_de_tipo_e_nome Fixnum, 'dez'
+					obj = @grupo.o_objeto_de_classe_e_nome Fixnum, 'dez'
 					obj.should be @obj
 				end
 				
-				it 'deveria ter um metodo o_de_tipo_e_nome que eh alias do metodo o_objeto_de_tipo_e_nome' do
-					obj = @grupo.o_de_tipo_e_nome Fixnum, 'dez'
+				it 'deveria ter um metodo o_de_classe_e_nome que eh alias do metodo o_objeto_de_classe_e_nome' do
+					obj = @grupo.o_de_classe_e_nome Fixnum, 'dez'
 					obj.should be @obj
 				end
 			end
