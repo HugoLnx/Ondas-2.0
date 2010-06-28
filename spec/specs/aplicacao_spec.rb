@@ -11,10 +11,6 @@ module Ondas2
 				@app = Aplicacao.new
 			end
 			
-			it 'deveria ser iniciavel' do
-				lambda{@app.inicia}.should_not raise_error
-			end
-			
 			it 'deveria ter componentes' do
 				@app.componentes.should_not be_nil
 			end
@@ -35,6 +31,44 @@ module Ondas2
 				it 'o componente adicionado deve estar dentre os componentes da aplicacao' do
 					comp = @app.componentes.o_de_classe_e_nome JFrame, :janela_principal 
 					comp.should be_a JFrame
+				end
+			end
+			
+			context 'apos adicionar uma JLabel nao indicando o nome' do
+				before do
+					@comp = @app.usa :classe => JLabel,
+									 :args => ['Nome Label']
+				end
+				
+				it 'o componente deveria ter o nome igual ao seu conteudo textual' do
+					comp = @app.componentes.o_de_classe_e_nome JLabel, @comp.text
+					comp.should_not be_nil
+				end
+			end
+			
+			context 'apos adicionar um JFrame nao indicando o nome' do
+				before do
+					@comp = @app.usa :classe => JFrame,
+									 :args => ['Nome Frame']
+				end
+				
+				it 'o componente deveria ter o nome igual ao seu titulo' do
+					comp = @app.componentes.o_de_classe_e_nome JFrame, @comp.title
+					comp.should_not be_nil
+				end
+			end
+			
+			it 'deveria ser iniciavel' do
+				lambda{@app.inicia}.should_not raise_error
+			end
+			
+			context 'apos ser iniciada' do
+				before do
+					@app.inicia
+				end
+				
+				it 'deveria ter uma janela' do
+					@app.janela.should_not be_nil
 				end
 			end
 		end
