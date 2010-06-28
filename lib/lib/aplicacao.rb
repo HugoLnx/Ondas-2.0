@@ -65,11 +65,15 @@ module Ondas2
 			vbox2.add lbl_per
 			vbox2.add txtf_per
 			
+			btn_gerar = self.usa :classe => JButton,
+								:args => ['Gerar Onda']
+			
 			hbox = Box.create_horizontal_box
 			
 			hbox.add vbox1
 			hbox.add vbox2
 			vboxp.add hbox
+			vboxp.add btn_gerar
 			@janela.add vboxp
 					 
 		end
@@ -81,7 +85,7 @@ module Ondas2
 			
 			comp = classe.method(:new).call(*args_construtor)
 			
-			nome = comp.text if classe == JLabel and nome.nil?
+			nome = comp.text if nome.nil? and (classe == JButton or classe == JLabel)
 			nome = comp.title if classe == JFrame and nome.nil?
 			self.componentes.adiciona comp, nome
 			comp

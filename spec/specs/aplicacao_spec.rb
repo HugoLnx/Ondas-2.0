@@ -46,6 +46,18 @@ module Ondas2
 				end
 			end
 			
+			context 'apos adicionar um JButton nao indicando o nome' do
+				before do
+					@comp = @app.usa :classe => JButton,
+									 :args => ['Nome Botao']
+				end
+				
+				it 'o componente deveria ter o nome igual ao seu conteudo textual' do
+					comp = @app.componentes.o_de_classe_e_nome JButton, @comp.text
+					comp.should_not be_nil
+				end
+			end
+			
 			context 'apos adicionar um JFrame nao indicando o nome' do
 				before do
 					@comp = @app.usa :classe => JFrame,
