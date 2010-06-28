@@ -5,6 +5,9 @@ require 'java'
 
 java_import javax.swing.JFrame
 java_import javax.swing.JLabel
+java_import javax.swing.JPanel
+java_import javax.swing.Box
+java_import java.awt.Color
 
 Dir[File.join(aqui,'bin/**.class')].each do |class_arq|
 	class_arq = class_arq.slice(/bin\/(.*)\.class$/,1)
