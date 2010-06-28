@@ -1,5 +1,6 @@
 Dado /^que o usuario iniciou o programa$/ do
-  Ondas2::Aplicacao.inicia
+  @app = Ondas2::Aplicacao.new
+  @app.inicia
 end
 
 Entao /^(|ele )deve vizualizar [oa] "([^\"]*)" "([^\"]*)"$/ do |none, classe_comp_s, nome_comp|
