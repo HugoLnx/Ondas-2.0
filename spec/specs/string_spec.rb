@@ -4,7 +4,7 @@ describe String do
 	it 'deveria ter o metodo para_sym' do
 		lambda{''.para_sym}.should_not raise_error NoMethodError
 	end
-	context ', ao chamar o metodo para_sym' do
+	context 'ao chamar o metodo para_sym' do
 		it 'deveria ser retornada a string convertida para simbolo' do
 			nome = 'HUgo'
 			nome.para_sym.should be_kind_of Symbol
