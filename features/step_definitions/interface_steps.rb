@@ -14,6 +14,11 @@ Dado /^que a caixa de texto "([^"]*)" foi preenchida com "([^"]*)"$/ do |nome, p
   caixa_txt.text = preenchimento
 end
 
+Dado (/^que clicaram no botao "([^"]*)"$/) do |nome|
+  botao = @app.componentes.o_de_classe_e_nome JButton, nome
+  botao.do_click
+end
+
 Entao /^a caixa de texto "([^"]*)" deve ter o texto "([^"]*)"$/ do |nome, preenchimento_esperado|
   caixa_txt = @app.componentes.o_de_classe_e_nome JTextField, nome
   caixa_txt.text.should be_eql preenchimento_esperado
