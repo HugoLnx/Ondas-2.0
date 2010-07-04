@@ -8,3 +8,13 @@ Entao /^(|ele )deve vizualizar [oa] "([^\"]*)" "([^\"]*)"$/ do |none, classe_com
   comp = @app.componentes.o_de_classe_e_nome classe_comp, nome_comp
   comp.should be_visible
 end
+
+Dado /^que a caixa de texto "([^"]*)" foi preenchida com "([^"]*)"$/ do |nome, preenchimento|
+  caixa_txt = @app.componentes.o_de_classe_e_nome JTextField, nome
+  caixa_txt.text = preenchimento
+end
+
+Entao /^a caixa de texto "([^"]*)" deve ter o texto "([^"]*)"$/ do |nome, preenchimento_esperado|
+  caixa_txt = @app.componentes.o_de_classe_e_nome JTextField, nome
+  caixa_txt.text.should be_eql preenchimento_esperado
+end

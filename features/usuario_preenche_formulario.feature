@@ -1,16 +1,15 @@
 # language:pt
+#	amp - 50
+#	lam - 20
+#	vel - 200
+#	frq - 10
+#	per - 0.1
+@preenche
 Funcionalidade: Usuario preenche o formulario
 	
 	Para gerar a visualizacao de uma onda
 	Como um usuario do sistema
 	Devo preencher os campos e clicar no botao Gerar Onda
-	
-	
-	amp - 50
-	lam - 20
-	vel - 200
-	frq - 10
-	per - 0.1
 	
 	Contexto:
 		Dado que o usuario iniciou o programa
