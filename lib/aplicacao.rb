@@ -2,6 +2,7 @@ module Ondas2
 	class Aplicacao
 		attr_reader :componentes
 		attr_reader :janela
+		attr_reader :onda
 		def initialize
 			@componentes = GrupoHashesObjs.new
 		end
