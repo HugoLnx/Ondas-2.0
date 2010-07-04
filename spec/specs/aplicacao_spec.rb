@@ -82,6 +82,17 @@ module Ondas2
 				it 'deveria ter uma janela' do
 					@app.janela.should_not be_nil
 				end
+				
+				context 'quando clicarem no botao Gerar Onda' do
+					before do
+						botao = @app.componentes.o_de_classe_e_nome JButton, 'Gerar Onda'
+						botao.do_click
+					end
+					
+					it 'deveria ter uma instancia do objeto onda' do
+						@app.onda.should be_a Onda
+					end
+				end
 			end
 		end
 	end
