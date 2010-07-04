@@ -21,12 +21,8 @@ module Ondas2
 				tamanho.should be_eql [305,273]
 			end
 			
-			it 'não deveria ser redimensionavel' do
+			it 'nao deveria ser redimensionavel' do
 				@j.resizable.should be_false
-			end
-			
-			it 'deveria estar visivel' do
-				@j.visible.should be_true
 			end
 			
 			it 'deveria ter configurada a operacao de fechamento padrao' do

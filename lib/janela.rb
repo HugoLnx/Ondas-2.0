@@ -5,8 +5,7 @@ module Ondas2
 			self.set_size 305,273
 			self.resizable = false
 			self.default_close_operation = JFrame::EXIT_ON_CLOSE
-			self.content_pane.layout = nil
-			self.visible = true
+			self.content_pane.layout = BorderLayout.new
 		end
 	end
 end

@@ -6,7 +6,7 @@ Funcionalidade: Usuario abre o programa
 	
 	Cenario: Usuario abre a janela
 		Dado que o usuario iniciou o programa
-		Entao ele deve vizualizar o "JFrame" "Visualizador de Ondas"
+		Entao ele deve vizualizar a "Janela" "Visualizador de Ondas"
 		E deve vizualizar a "JLabel" "Desenho da Onda"
 		E deve vizualizar o "JPanel" "desenho"
 		E deve vizualizar a "JLabel" "Amplitude"

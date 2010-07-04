@@ -12,8 +12,13 @@ java_import javax.swing.JLabel
 java_import javax.swing.JPanel
 java_import javax.swing.JTextField
 
+java_import java.awt.BorderLayout
 java_import java.awt.Color
+java_import java.awt.Container
 java_import java.awt.Dimension
+java_import java.awt.GridBagLayout
+java_import java.awt.GridBagConstraints
+java_import java.awt.event.ActionListener
 
 
 Dir[File.join(aqui,'**.class')].each do |class_arq|
