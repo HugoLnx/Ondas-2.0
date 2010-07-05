@@ -82,6 +82,10 @@ module Ondas2
 				it 'deveria ter uma janela' do
 					@app.janela.should_not be_nil
 				end
+				
+				it 'deveria ter uma janela visivel' do
+					@app.janela.should be_visible
+				end
 			end
 		end
 	end

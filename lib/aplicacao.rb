@@ -87,18 +87,6 @@ module Ondas2
 			form.add btn_gerar, gbc
 			
 			pane.add form, BorderLayout::SOUTH
-			
-			#lbl_amp.set_bounds	   (10 , 170, 70 , 14)
-			#txtf_amp.set_bounds	   (80 , 170, 59 , 20)
-			#lbl_lam.set_bounds	   (10 , 190, 70 , 14)
-			#txtf_lam.set_bounds	   (80 , 190, 59 , 20)
-			#lbl_vel.set_bounds	   (10 , 210, 70 , 14)
-			#txtf_vel.set_bounds	   (80 , 210, 59 , 20)
-			#lbl_freq.set_bounds	   (150, 170, 70 , 14)
-			#txtf_freq.set_bounds   (220, 170, 59 , 20)
-			#lbl_per.set_bounds	   (150, 190, 70 , 14)
-			#txtf_per.set_bounds	   (220, 190, 59 , 20)
-			#btn_gerar.set_bounds   (150, 210, 128, 19)
 		end
 		
 		def usa(args={})
@@ -112,7 +100,6 @@ module Ondas2
 			nome = comp.title if comp.kind_of? JFrame and nome.nil?
 			
 			self.componentes.adiciona comp, nome
-			#@janela.content_pane.add comp if comp.kind_of? JFrame and !@janela.nil?
 			comp
 		end
 		
@@ -128,13 +115,13 @@ module Ondas2
 			vel_val = txtfs[:velocidade].text.empty? ? nil : txtfs[:velocidade].text.to_f
 			freq_val = txtfs[:frequencia].text.empty? ? nil : txtfs[:frequencia].text.to_f
 			per_val = txtfs[:periodo].text.empty? ? nil : txtfs[:periodo].text.to_f
-			
+
 			@onda = Onda.new :amplitude => amp_val,
 							 :lambda => lam_val,
 							 :velocidade => vel_val,
 							 :frequencia => freq_val,
 							 :periodo => per_val
-
+			
 			txtfs.each_pair do |nome,txtf|
 				txtf.text = @onda.method(nome).call.to_s if txtf.text.empty?
 			end

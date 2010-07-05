@@ -21,5 +21,7 @@ end
 
 Entao /^a caixa de texto "([^"]*)" deve ter o texto "([^"]*)"$/ do |nome, preenchimento_esperado|
   caixa_txt = @app.componentes.o_de_classe_e_nome JTextField, nome
-  caixa_txt.text.should be_eql preenchimento_esperado
+  valor_recebido = caixa_txt.text.to_f
+  valor_esperado = preenchimento_esperado.to_f
+  valor_recebido.should be_eql valor_esperado
 end

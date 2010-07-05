@@ -50,10 +50,11 @@ module Ondas2
 			end
 			
 			it 'deveria ter velocidade igual a 200' do
-				@onda.velocidade.should be_eql 200
+				@onda.velocidade.should be_eql 200.0
 			end
 			
 			it 'deveria ter periodo igual a 0.1' do
+				p @onda.periodo
 				@onda.periodo.should be_eql 0.1
 			end
 		end
