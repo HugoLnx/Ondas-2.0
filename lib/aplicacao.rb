@@ -7,11 +7,13 @@ module Ondas2
 			@componentes = GrupoHashesObjs.new
 		end
 	
-		def inicia
+		def inicia(args={})
+			em_teste = args[:teste]
+		
 			@janela = self.usa :classe => Janela, :args => 'Visualizador de Ondas'
 			cria_e_posiciona_outros_componentes
 			observador = ObservadorEventos.new self
-			@janela.visible = true
+			@janela.visible = true unless em_teste
 		end
 		
 		def cria_e_posiciona_outros_componentes

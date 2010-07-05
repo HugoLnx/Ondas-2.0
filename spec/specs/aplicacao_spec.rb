@@ -87,6 +87,24 @@ module Ondas2
 					@app.janela.should be_visible
 				end
 			end
+			
+			it 'deveria poder ser iniciada em modo de teste' do
+				lambda{@app.inicia :teste => true}.should_not raise_error
+			end
+			
+			context 'apos ser iniciada' do
+				before do
+					@app.inicia :teste => true
+				end
+				
+				it 'deveria ter uma janela' do
+					@app.janela.should_not be_nil
+				end
+				
+				it 'deveria ter uma janela invisivel' do
+					@app.janela.should_not be_visible
+				end
+			end
 		end
 	end
 end
