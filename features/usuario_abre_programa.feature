@@ -1,4 +1,5 @@
 # language:pt
+@abrir
 Funcionalidade: Usuario abre o programa
 	Para usufruir das funcionalidades do programa
 	Como um usuario
@@ -8,7 +9,7 @@ Funcionalidade: Usuario abre o programa
 		Dado que o usuario iniciou o programa
 		Entao ele deve vizualizar a "Janela" "Visualizador de Ondas"
 		E deve vizualizar a "JLabel" "Desenho da Onda"
-		E deve vizualizar o "JPanel" "desenho"
+		E deve vizualizar o "PainelDesenho" "desenho"
 		E deve vizualizar a "JLabel" "Amplitude"
 		E deve vizualizar o "JTextField" "amplitude"
 		E deve vizualizar a "JLabel" "Lambda"

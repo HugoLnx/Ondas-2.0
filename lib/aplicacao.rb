@@ -18,7 +18,7 @@ module Ondas2
 		
 		def cria_e_posiciona_outros_componentes
 			lbl_des_onda = self.usa :classe => JLabel, :args => 'Desenho da Onda'
-			pnl_des = self.usa :classe => JPanel, :nome => 'desenho'
+			pnl_des = self.usa :classe =>  PainelDesenho, :nome => 'desenho'
 			pnl_des.background = Color::WHITE
 			pnl_des.border = BorderFactory.create_line_border(Color::BLACK)
 			
