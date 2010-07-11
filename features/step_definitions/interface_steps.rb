@@ -20,8 +20,9 @@ Dado (/^que clicaram no botao "([^"]*)"$/) do |nome|
   botao.do_click
 end
 
-Entao /^a caixa de texto "([^"]*)" deve ter o texto "([^"]*)"$/ do |nome, preenchimento_esperado|
-  caixa_txt = @app.componentes.o_de_classe_e_nome JTextField, nome
+Entao (/^[ao] "([^"]*)" "([^"]*)" deve ter o texto "([^"]*)"$/) do |classe_comp_s,nome, preenchimento_esperado|
+  classe_comp = Ondas2.const_get classe_comp_s
+  caixa_txt = @app.componentes.o_de_classe_e_nome classe_comp, nome
   valor_recebido = caixa_txt.text.to_f
   valor_esperado = preenchimento_esperado.to_f
   valor_recebido.should be_eql valor_esperado

@@ -28,6 +28,10 @@ module Ondas2
 			lbl_freq = self.usa :classe => JLabel, :args => 'Frequencia'
 			lbl_per = self.usa :classe => JLabel, :args => 'Periodo'
 			
+			lbl_erros = self.usa :classe => JLabel, :args => 'erros'
+			lbl_erros.text = ''
+			lbl_erros.foreground = Color::RED
+			
 			txtf_amp = self.usa :classe => JTextField, :nome => 'amplitude'
 			txtf_lam = self.usa :classe => JTextField, :nome => 'lambda'
 			txtf_vel = self.usa :classe => JTextField, :nome => 'velocidade'
@@ -48,10 +52,14 @@ module Ondas2
 			
 			gbc.gridx = 0
 			gbc.gridy = 0
-			gbc.gridwidth = 1
+			gbc.gridwidth = 2
 			gbc.gridheight = 1
 			gbc.fill = GridBagConstraints::HORIZONTAL
 			gbc.weightx = 1
+			form.add lbl_erros, gbc
+			
+			gbc.gridwidth = 1
+			gbc.gridy +=1
 			form.add lbl_amp, gbc
 			
 			gbc.gridy +=1
@@ -69,7 +77,7 @@ module Ondas2
 			gbc.gridy +=1
 			form.add txtf_vel, gbc
 			
-			gbc.gridy = 0
+			gbc.gridy = 1
 			gbc.gridx += 1
 			form.add lbl_freq, gbc
 			
@@ -117,12 +125,20 @@ module Ondas2
 			vel_val = txtfs[:velocidade].text.empty? ? nil : txtfs[:velocidade].text.to_f
 			freq_val = txtfs[:frequencia].text.empty? ? nil : txtfs[:frequencia].text.to_f
 			per_val = txtfs[:periodo].text.empty? ? nil : txtfs[:periodo].text.to_f
-
-			@onda = Onda.new :amplitude => amp_val,
-							 :lambda => lam_val,
-							 :velocidade => vel_val,
-							 :frequencia => freq_val,
-							 :periodo => per_val
+			begin
+				@onda = Onda.new :amplitude => amp_val,
+								 :lambda => lam_val,
+								 :velocidade => vel_val,
+								 :frequencia => freq_val,
+								 :periodo => per_val
+			rescue OndaException => e
+				lbl_erros = self.componentes.o_de_classe_e_nome JLabel, 'erros'
+				case e.message
+				when :FaltaDados
+					lbl_erros.text = 'Dados insuficientes para a criacao de uma onda.'
+				end
+				return
+			end
 			
 			txtfs.each_pair do |nome,txtf|
 				txtf.text = @onda.method(nome).call.to_s if txtf.text.empty?
