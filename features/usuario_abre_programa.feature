@@ -6,18 +6,18 @@ Funcionalidade: Usuario abre o programa
 	Devo visualizar sua janela e componentes da mesma
 	
 	Cenario: Usuario abre a janela
-		Dado que o usuario iniciou o programa
-		Entao ele deve vizualizar a "Janela" "Visualizador de Ondas"
-		E deve vizualizar a "JLabel" "Desenho da Onda"
-		E deve vizualizar o "PainelDesenho" "desenho"
-		E deve vizualizar a "JLabel" "Amplitude"
-		E deve vizualizar o "JTextField" "amplitude"
-		E deve vizualizar a "JLabel" "Lambda"
-		E deve vizualizar o "JTextField" "lambda"
-		E deve vizualizar a "JLabel" "Velocidade"
-		E deve vizualizar o "JTextField" "velocidade"
-		E deve vizualizar a "JLabel" "Frequencia"
-		E deve vizualizar o "JTextField" "frequencia"
-		E deve vizualizar a "JLabel" "Periodo"
-		E deve vizualizar o "JTextField" "periodo"
-		E deve vizualizar o "JButton" "Gerar Onda"
+		Dado que inicio o programa
+		Entao devo vizualizar a "Janela" "Visualizador de Ondas"
+		E devo vizualizar a "JLabel" "Desenho da Onda"
+		E devo vizualizar o "PainelDesenho" "desenho"
+		E devo vizualizar a "JLabel" "Amplitude"
+		E devo vizualizar o "JTextField" "amplitude"
+		E devo vizualizar a "JLabel" "Lambda"
+		E devo vizualizar o "JTextField" "lambda"
+		E devo vizualizar a "JLabel" "Velocidade"
+		E devo vizualizar o "JTextField" "velocidade"
+		E devo vizualizar a "JLabel" "Frequencia"
+		E devo vizualizar o "JTextField" "frequencia"
+		E devo vizualizar a "JLabel" "Periodo"
+		E devo vizualizar o "JTextField" "periodo"
+		E devo vizualizar o "JButton" "Gerar Onda"
