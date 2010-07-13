@@ -120,11 +120,11 @@ module Ondas2
 					 :frequencia => self.componentes.o_de_classe_e_nome(JTextField, 'frequencia'),
 					 :periodo => self.componentes.o_de_classe_e_nome(JTextField, 'periodo')}
 			
-			amp_val = txtfs[:amplitude].text.empty? ? nil : txtfs[:amplitude].text.to_f
-			lam_val = txtfs[:lambda].text.empty? ? nil : txtfs[:lambda].text.to_f
-			vel_val = txtfs[:velocidade].text.empty? ? nil : txtfs[:velocidade].text.to_f
-			freq_val = txtfs[:frequencia].text.empty? ? nil : txtfs[:frequencia].text.to_f
-			per_val = txtfs[:periodo].text.empty? ? nil : txtfs[:periodo].text.to_f
+			amp_val = txtfs[:amplitude].text.empty? ? nil : txtfs[:amplitude].text
+			lam_val = txtfs[:lambda].text.empty? ? nil : txtfs[:lambda].text
+			vel_val = txtfs[:velocidade].text.empty? ? nil : txtfs[:velocidade].text
+			freq_val = txtfs[:frequencia].text.empty? ? nil : txtfs[:frequencia].text
+			per_val = txtfs[:periodo].text.empty? ? nil : txtfs[:periodo].text
 			begin
 				@onda = Onda.new :amplitude => amp_val,
 								 :lambda => lam_val,
@@ -138,6 +138,8 @@ module Ondas2
 					lbl_erros.text = 'Dados insuficientes para a criacao de uma onda.'
 				when :SemAmplitude
 					lbl_erros.text = 'Informe o valor da Amplitude.'
+				when :ComLetras
+					lbl_erros.text = 'Preencha os campos somente com numeros.'
 				end
 				return
 			end

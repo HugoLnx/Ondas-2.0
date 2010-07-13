@@ -131,3 +131,29 @@ Funcionalidade: Usuario preenche o formulario
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "Informe o valor da Amplitude." na "JLabel" "erros"
+
+	# FALHA = LETRAS	
+	Cenario: Usuario preenche a amplitude com letras
+		E que preencho a caixa de texto "amplitude" com "50fs"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"
+	
+	Cenario: Usuario preenche o lambda com letras
+		E que preencho a caixa de texto "lambda" com "20fs"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a velocidade com letras
+		E que preencho a caixa de texto "velocidade" com "200fas"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"
+
+	Cenario: Usuario preenche a frequencia com letras
+		E que preencho a caixa de texto "frequencia" com "1s0gds"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche o periodo com letras
+		E que preencho a caixa de texto "periodo" com "0.1ds"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"

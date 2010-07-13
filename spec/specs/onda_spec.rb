@@ -136,7 +136,7 @@ module Ondas2
 		
 		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e a frequencia' do
 			lambda{@onda = Onda.new :amplitude => 50, 
-									:frequancia => 10
+									:frequencia => 10
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
@@ -163,6 +163,26 @@ module Ondas2
 									:frequencia => 10,
 									:periodo => 0.1
 			}.should raise_error OndaException,:SemAmplitude
+		end
+		
+		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o lambda com letras' do
+			lambda{@onda = Onda.new	:lambda => '20as'
+			}.should raise_error OndaException,:ComLetras
+		end
+		
+		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a velocidade com letras' do
+			lambda{@onda = Onda.new :velocidade => '200asdf'
+			}.should raise_error OndaException,:ComLetras
+		end
+		
+		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a frequencia com letras' do
+			lambda{@onda = Onda.new :frequencia => '10asd'
+			}.should raise_error OndaException,:ComLetras
+		end
+		
+		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o periodo com letras' do
+			lambda{@onda = Onda.new :periodo => '0.asdf1'
+			}.should raise_error OndaException,:ComLetras
 		end
 	end
 end
