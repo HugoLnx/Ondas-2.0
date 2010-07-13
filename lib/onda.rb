@@ -20,8 +20,8 @@ module Ondas2
 			num_dados += 1 if !dados[:velocidade].nil?
 			num_dados += 1 if !dados[:lambda].nil?
 			num_dados += 1 if !dados[:frequencia].nil? or !dados[:periodo].nil?
+			raise OndaException,:SemAmplitude if dados[:amplitude].nil?
 			raise OndaException,:FaltaDados if num_dados < 2
-			#raise OndaException,:SemAmplitude if dados[:amplitude].nil?
 		end
 		
 		def calcula_propriedades

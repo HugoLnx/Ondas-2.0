@@ -136,6 +136,8 @@ module Ondas2
 				case e.message
 				when :FaltaDados
 					lbl_erros.text = 'Dados insuficientes para a criacao de uma onda.'
+				when :SemAmplitude
+					lbl_erros.text = 'Informe o valor da Amplitude.'
 				end
 				return
 			end

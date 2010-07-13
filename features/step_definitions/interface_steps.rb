@@ -23,7 +23,11 @@ end
 Entao (/^vejo "([^"]*)" na "([^"]*)" "([^"]*)"$/) do |preenchimento_esperado,classe_comp_s,nome|
   classe_comp = Ondas2.const_get classe_comp_s
   caixa_txt = @app.componentes.o_de_classe_e_nome classe_comp, nome
-  valor_recebido = caixa_txt.text.to_f
-  valor_esperado = preenchimento_esperado.to_f
+  valor_recebido = caixa_txt.text
+  valor_esperado = preenchimento_esperado
+  if classe_comp == JTextField
+	valor_recebido = valor_recebido.to_f
+	valor_esperado = valor_esperado.to_f
+  end
   valor_recebido.should be_eql valor_esperado
 end
