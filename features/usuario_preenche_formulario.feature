@@ -98,6 +98,14 @@ Funcionalidade: Usuario preenche o formulario
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "Informe o valor da Amplitude." na "JLabel" "erros"
 	
+	Cenario: Usuario nao preenche a amplitude
+		Dado que preencho a caixa de texto "lambda" com "20"
+		E que preencho a caixa de texto "velocidade" com "200"
+		E que preencho a caixa de texto "frequencia" com "10"
+		E que preencho a caixa de texto "periodo" com "0.1"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Informe o valor da Amplitude." na "JLabel" "erros"
+	
 	Cenario: Usuario preenche o lambda
 		E que preencho a caixa de texto "lambda" com "20"
 		Quando clico no botao "Gerar Onda"
