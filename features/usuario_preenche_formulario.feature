@@ -15,7 +15,7 @@ Funcionalidade: Usuario preenche o formulario
 		Dado que inicio o programa
 
 	# CASOS DE SUCESSO
-	Cenario: Usuario nao preenche velocidade e o periodo
+	Cenario: Usuario nao preenche a velocidade e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
 		E que preencho a caixa de texto "frequencia" com "10"
@@ -23,7 +23,7 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "0.1" na "JTextField" "periodo"
 
-	Cenario: Usuario nao preenche lambda e o periodo
+	Cenario: Usuario nao preenche o lambda e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "velocidade" com "200"
 		E que preencho a caixa de texto "frequencia" com "10"
@@ -31,7 +31,7 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "20" na "JTextField" "lambda"
 		E vejo "0.1" na "JTextField" "periodo"
 		
-	Cenario: Usuario nao preenche velocidade e a frequencia
+	Cenario: Usuario nao preenche a velocidade e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
 		E que preencho a caixa de texto "periodo" com "0.1"
@@ -39,7 +39,7 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "10" na "JTextField" "frequencia"
 		
-	Cenario: Usuario nao preenche lambda e a frequencia
+	Cenario: Usuario nao preenche o lambda e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "velocidade" com "200"
 		E que preencho a caixa de texto "periodo" com "0.1"
@@ -47,7 +47,7 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "20" na "JTextField" "lambda"
 		E vejo "10" na "JTextField" "frequencia"
 		
-	Cenario: Usuario nao preenche periodo e a frequencia
+	Cenario: Usuario nao preenche o periodo e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
 		E que preencho a caixa de texto "velocidade" com "200"
@@ -57,5 +57,41 @@ Funcionalidade: Usuario preenche o formulario
 
 	# CASOS DE FALHA
 	Cenario: Usuario nao preenche nada
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a amplitude
+		E que preencho a caixa de texto "amplitude" com "50"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a amplitude e o lambda
+		Dado que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "20"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a amplitude e a velocidade
+		Dado que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "velocidade" com "200"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+
+	Cenario: Usuario preenche a amplitude e a frequencia
+		Dado que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "frequencia" com "10"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a amplitude e o periodo
+		Dado que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "periodo" com "0.1"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		
+	Cenario: Usuario preenche a amplitude e a frequencia e o periodo
+		Dado que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "frequencia" com "10"
+		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
