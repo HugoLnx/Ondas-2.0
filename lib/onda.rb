@@ -7,6 +7,7 @@ module Ondas2
 			inicializa_atributos_com dados
 			checa_se_e_possivel_definir_a_onda_com_os dados
 			calcula_propriedades
+			checa_vericidade_dos_valores
 		end
 		
 		def inicializa_atributos_com(dados)
@@ -32,6 +33,10 @@ module Ondas2
 			@velocidade = @lambda*@frequencia if @velocidade.nil?
 			@lambda = @velocidade / @frequencia if @lambda.nil?
 			@periodo = 1/@frequencia if @periodo.nil?
+		end
+		
+		def checa_vericidade_dos_valores
+			raise OndaException, :FrequenciaPeriodoErro if @frequencia != 1/@periodo
 		end
 	end
 end

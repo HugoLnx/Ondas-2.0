@@ -60,38 +60,38 @@ Funcionalidade: Usuario preenche o formulario
 	Cenario: Usuario preenche a amplitude
 		E que preencho a caixa de texto "amplitude" com "50"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 		
 	Cenario: Usuario preenche a amplitude e o lambda
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 		
 	Cenario: Usuario preenche a amplitude e a velocidade
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "velocidade" com "200"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 
 	Cenario: Usuario preenche a amplitude e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "frequencia" com "10"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 		
 	Cenario: Usuario preenche a amplitude e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 		
 	Cenario: Usuario preenche a amplitude e a frequencia e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "frequencia" com "10"
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo "Dados insuficientes para a criacao de uma onda." na "JLabel" "erros"
+		Entao vejo "Dados insuficientes." na "JLabel" "erros"
 		
 	# FALHA = FALTA AMPLITUDE		
 	Cenario: Usuario nao preenche nada
@@ -157,3 +157,13 @@ Funcionalidade: Usuario preenche o formulario
 		E que preencho a caixa de texto "periodo" com "0.1ds"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "Preencha os campos somente com numeros." na "JLabel" "erros"
+
+	# FALHA = FrequenciaPeriodoSurreais
+	Cenario: Usuario preenche tudo, porem a frequencia nao eh 1/periodo
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "20"
+		E que preencho a caixa de texto "velocidade" com "200"
+		E que preencho a caixa de texto "frequencia" com "1"
+		E que preencho a caixa de texto "periodo" com "12341"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "A frequencia deve ser o inverso do periodo." na "JLabel" "erros"

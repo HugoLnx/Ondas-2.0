@@ -29,7 +29,7 @@ module Ondas2
 			lbl_per = self.usa :classe => JLabel, :args => 'Periodo'
 			
 			lbl_erros = self.usa :classe => JLabel, :args => 'erros'
-			lbl_erros.text = ''
+			lbl_erros.text = ' '
 			lbl_erros.foreground = Color::RED
 			
 			txtf_amp = self.usa :classe => JTextField, :nome => 'amplitude'
@@ -135,11 +135,13 @@ module Ondas2
 				lbl_erros = self.componentes.o_de_classe_e_nome JLabel, 'erros'
 				case e.message
 				when :FaltaDados
-					lbl_erros.text = 'Dados insuficientes para a criacao de uma onda.'
+					lbl_erros.text = 'Dados insuficientes.'
 				when :SemAmplitude
 					lbl_erros.text = 'Informe o valor da Amplitude.'
 				when :ComLetras
 					lbl_erros.text = 'Preencha os campos somente com numeros.'
+				when :FrequenciaPeriodoErro
+					lbl_erros.text = 'A frequencia deve ser o inverso do periodo.'
 				end
 				return
 			end
