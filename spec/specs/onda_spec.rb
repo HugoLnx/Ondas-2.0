@@ -122,42 +122,42 @@ module Ondas2
 			end
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e o lambda' do
+		it 'deveria lancar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e o lambda' do
 			lambda{@onda = Onda.new :amplitude => 50, 
 									:lambda => 20
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e a velocidade' do
+		it 'deveria lancar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e a velocidade' do
 			lambda{@onda = Onda.new :amplitude => 50, 
 									:velocidade => 200
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e a frequencia' do
+		it 'deveria lancar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e a frequencia' do
 			lambda{@onda = Onda.new :amplitude => 50, 
 									:frequencia => 10
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e o periodo' do
+		it 'deveria lancar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude e o periodo' do
 			lambda{@onda = Onda.new :amplitude => 50, 
 									:periodo => 0.1
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude, a frequencia e o periodo' do
+		it 'deveria lancar uma OndaException com a mensagem :FaltaDados ao ser instanciada passando a amplitude, a frequencia e o periodo' do
 			lambda{@onda = Onda.new :amplitude => 50, 
 									:frequencia => 10, 
 									:periodo => 0.1
 			}.should raise_error OndaException,:FaltaDados
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :SemAmplitude ao ser instanciada sem passar nada' do
+		it 'deveria lancar uma OndaException com a mensagem :SemAmplitude ao ser instanciada sem passar nada' do
 			lambda{@onda = Onda.new}.should raise_error OndaException,:SemAmplitude
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :SemAmplitude ao ser instanciada sem passar a amplitude' do
+		it 'deveria lancar uma OndaException com a mensagem :SemAmplitude ao ser instanciada sem passar a amplitude' do
 			lambda{@onda = Onda.new :lambda => 20, 
 									:velocidade => 200,
 									:frequencia => 10,
@@ -165,24 +165,33 @@ module Ondas2
 			}.should raise_error OndaException,:SemAmplitude
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o lambda com letras' do
+		it 'deveria lancar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o lambda com letras' do
 			lambda{@onda = Onda.new	:lambda => '20as'
 			}.should raise_error OndaException,:ComLetras
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a velocidade com letras' do
+		it 'deveria lancar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a velocidade com letras' do
 			lambda{@onda = Onda.new :velocidade => '200asdf'
 			}.should raise_error OndaException,:ComLetras
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a frequencia com letras' do
+		it 'deveria lancar uma OndaException com a mensagem :ComLetras ao ser instanciada passando a frequencia com letras' do
 			lambda{@onda = Onda.new :frequencia => '10asd'
 			}.should raise_error OndaException,:ComLetras
 		end
 		
-		it 'deveria lacar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o periodo com letras' do
+		it 'deveria lancar uma OndaException com a mensagem :ComLetras ao ser instanciada passando o periodo com letras' do
 			lambda{@onda = Onda.new :periodo => '0.asdf1'
 			}.should raise_error OndaException,:ComLetras
+		end
+		
+		it 'deveria lancar uma OndaException com a mensagem :FrequenciaPeriodoErro ao ser instanciada passando frequencia e periodo invalidos' do
+			lambda{@onda = Onda.new :amplitude => 50,
+									:lambda => 20, 
+									:velocidade => 200,
+									:frequencia => 10,
+									:periodo => 1234
+			}.should raise_error OndaException, :FrequenciaPeriodoErro
 		end
 	end
 end
