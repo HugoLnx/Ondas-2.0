@@ -20,7 +20,6 @@ java_import java.awt.GridBagLayout
 java_import java.awt.GridBagConstraints
 java_import java.awt.event.ActionListener
 
-
 Dir[File.join(aqui,'**.class')].each do |class_arq|
 	class_arq = class_arq.slice(/bin\/(.*)\.class$/,1)
 	require File.basename class_arq

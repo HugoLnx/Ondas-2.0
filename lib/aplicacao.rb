@@ -4,7 +4,7 @@ module Ondas2
 		attr_reader :janela
 		attr_reader :onda
 		def initialize
-			@componentes = GrupoHashesObjs.new
+			@componentes = Componentes.new
 		end
 	
 		def inicia(args={})
