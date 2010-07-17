@@ -126,13 +126,14 @@ module Ondas2
 			freq_val = txtfs[:frequencia].text.empty? ? nil : txtfs[:frequencia].text
 			per_val = txtfs[:periodo].text.empty? ? nil : txtfs[:periodo].text
 			begin
+				lbl_erros = self.componentes.o_de_classe_e_nome JLabel, 'erros'
 				@onda = Onda.new :amplitude => amp_val,
 								 :lambda => lam_val,
 								 :velocidade => vel_val,
 								 :frequencia => freq_val,
 								 :periodo => per_val
+				lbl_erros.text = ' '
 			rescue OndaException => e
-				lbl_erros = self.componentes.o_de_classe_e_nome JLabel, 'erros'
 				case e.message
 				when :FaltaDados
 					lbl_erros.text = 'Dados insuficientes.'
@@ -142,6 +143,8 @@ module Ondas2
 					lbl_erros.text = 'Preencha os campos somente com numeros.'
 				when :FrequenciaPeriodoErro
 					lbl_erros.text = 'A frequencia deve ser o inverso do periodo.'
+				when :VelocidadeLambdaFrequenciaErro
+					lbl_erros.text = 'A velocidade deve ser igual a lambda * frequencia.'
 				end
 				return
 			end

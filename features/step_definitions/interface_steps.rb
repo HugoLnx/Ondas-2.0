@@ -31,3 +31,9 @@ Entao (/^vejo "([^"]*)" na "([^"]*)" "([^"]*)"$/) do |preenchimento_esperado,cla
   end
   valor_recebido.should be_eql valor_esperado
 end
+
+Entao /^vejo a "([^"]*)" "([^"]*)" vazia$/ do |classe_comp_s, nome|
+  classe_comp = Ondas2.const_get classe_comp_s
+  caixa_txt = @app.componentes.o_de_classe_e_nome classe_comp, nome
+  caixa_txt.text.strip.should be_empty
+end

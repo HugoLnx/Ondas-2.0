@@ -193,5 +193,14 @@ module Ondas2
 									:periodo => 1234
 			}.should raise_error OndaException, :FrequenciaPeriodoErro
 		end
+		
+		it 'deveria lancar uma OndaException com a mensagem :VelocidadeLambdaFrequenciaErro ao ser instanciada passando velocidade, lambda e frequencia invalidos' do
+			lambda{@onda = Onda.new :amplitude => 50,
+									:lambda => 20, 
+									:velocidade => 999,
+									:frequencia => 10,
+									:periodo => 0.1
+			}.should raise_error OndaException, :VelocidadeLambdaFrequenciaErro
+		end
 	end
 end

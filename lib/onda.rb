@@ -37,6 +37,7 @@ module Ondas2
 		
 		def checa_vericidade_dos_valores
 			raise OndaException, :FrequenciaPeriodoErro if @frequencia != 1/@periodo
+			raise OndaException, :VelocidadeLambdaFrequenciaErro if @velocidade != @lambda * @frequencia
 		end
 	end
 end

@@ -22,6 +22,7 @@ Funcionalidade: Usuario preenche o formulario
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "0.1" na "JTextField" "periodo"
+		E vejo a "JLabel" "erros" vazia
 
 	Cenario: Usuario nao preenche o lambda e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
@@ -29,7 +30,8 @@ Funcionalidade: Usuario preenche o formulario
 		E que preencho a caixa de texto "frequencia" com "10"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "20" na "JTextField" "lambda"
-		E vejo "0.1" na "JTextField" "periodo"
+		E vejo "0.1" na "JTextField" "periodo" 
+		E vejo a "JLabel" "erros" vazia
 		
 	Cenario: Usuario nao preenche a velocidade e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
@@ -38,6 +40,7 @@ Funcionalidade: Usuario preenche o formulario
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "10" na "JTextField" "frequencia"
+		E vejo a "JLabel" "erros" vazia
 		
 	Cenario: Usuario nao preenche o lambda e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
@@ -46,6 +49,7 @@ Funcionalidade: Usuario preenche o formulario
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "20" na "JTextField" "lambda"
 		E vejo "10" na "JTextField" "frequencia"
+		E vejo a "JLabel" "erros" vazia
 		
 	Cenario: Usuario nao preenche o periodo e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
@@ -54,6 +58,7 @@ Funcionalidade: Usuario preenche o formulario
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "10" na "JTextField" "frequencia"
 		E vejo "0.1" na "JTextField" "periodo"
+		E vejo a "JLabel" "erros" vazia
 
 	# CASOS DE FALHA
 	# FALHA = DADOS INSUFICIENTES
@@ -167,3 +172,25 @@ Funcionalidade: Usuario preenche o formulario
 		E que preencho a caixa de texto "periodo" com "12341"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "A frequencia deve ser o inverso do periodo." na "JLabel" "erros"
+	
+	# FALHA = VelocidadeLambdaFrequenciaSurreais
+	Cenario: Usuario preenche tudo, porem a velocidade nao eh igual ao produto do lambda pela frequencia
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "velocidade" com "999"
+		E que preencho a caixa de texto "lambda" com "20"
+		E que preencho a caixa de texto "frequencia" com "10"
+		E que preencho a caixa de texto "periodo" com "0.1"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo "A velocidade deve ser igual a lambda * frequencia." na "JLabel" "erros"
+		
+	Cenario: Usuario causa um erro e depois o conserta
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "20"
+		E que preencho a caixa de texto "velocidade" com "200"
+		E que preencho a caixa de texto "frequencia" com "10"
+		E que preencho a caixa de texto "periodo" com "12341"
+		E clico no botao "Gerar Onda"
+		E vejo "A frequencia deve ser o inverso do periodo." na "JLabel" "erros"
+		E que preencho a caixa de texto "periodo" com "0.1"
+		Quando clico no botao "Gerar Onda"
+		Entao vejo a "JLabel" "erros" vazia
