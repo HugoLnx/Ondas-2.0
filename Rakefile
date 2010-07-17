@@ -32,21 +32,3 @@ task :compilar do
 			sh "jruby -S jrubyc \"#{script}\" -d \"#{dir}\" -t \"#{DIR_CLASS}/\""
 	end
 end
-
-task :executavel do
-	require 'fileutils'
-
-	aqui = File.dirname __FILE__
-	
-	executavel_dir = File.join(aqui,DIR_EXECUTAVEL)
-	
-	if File.exist? executavel_dir
-		puts "O Diretorio #{DIR_EXECUTAVEL} ja existe.\nDeseja continuar mesmo assim?(y/n)"
-		resposta = gets
-		FileUtils.rm_r executavel, :force => true if resposta.chop.downcase == 'y'
-		return
-	end
-	Dir.mkdir executavel_dir
-	FileUtils.cp_r File.join(aqui,DIR_CLASS),File.join(aqui,DIR_EXECUTAVEL)
-	
-end
