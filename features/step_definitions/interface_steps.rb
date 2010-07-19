@@ -15,9 +15,10 @@ Dado /^que preencho a caixa de texto "([^"]*)" com "([^"]*)"$/ do |nome, preench
   caixa_txt.text = preenchimento
 end
 
-Quando (/^clico no botao "([^"]*)"$/) do |nome|
+Quando (/^clico( duas vezes|) no botao "([^"]*)"$/) do |duas_vezes_s,nome|
   botao = @app.componentes.o_de_classe_e_nome JButton, nome
   botao.do_click
+  botao.do_click unless duas_vezes_s.empty?
 end
 
 Entao (/^vejo "([^"]*)" na "([^"]*)" "([^"]*)"$/) do |preenchimento_esperado,classe_comp_s,nome|

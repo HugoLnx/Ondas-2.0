@@ -182,7 +182,7 @@ Funcionalidade: Usuario preenche o formulario
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
 		Entao vejo "A velocidade deve ser igual a lambda * frequencia." na "JLabel" "erros"
-		
+	
 	Cenario: Usuario causa um erro e depois o conserta
 		E que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
@@ -193,4 +193,11 @@ Funcionalidade: Usuario preenche o formulario
 		E vejo "A frequencia deve ser o inverso do periodo." na "JLabel" "erros"
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
+		Entao vejo a "JLabel" "erros" vazia
+		
+	Cenario: Usuario utiliza valores que tornam o periodo uma dizima
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "30"
+		E que preencho a caixa de texto "velocidade" com "20"
+		Quando clico duas vezes no botao "Gerar Onda"
 		Entao vejo a "JLabel" "erros" vazia
