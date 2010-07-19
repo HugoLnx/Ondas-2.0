@@ -18,9 +18,17 @@ java_import java.awt.Container
 java_import java.awt.Dimension
 java_import java.awt.GridBagLayout
 java_import java.awt.GridBagConstraints
+java_import java.awt.geom.Line2D
 java_import java.awt.event.ActionListener
 
-Dir[File.join(aqui,'**.class')].each do |class_arq|
+
+java_import java.lang.Runnable
+JThread = java.lang.Thread
+
+# Dando require de todas as classes do diretorio bin
+classes_requiridas = Dir[File.join(aqui,'**.class')]
+classes_requiridas.delete_if{|path| path.include? 'ondas2.class'}
+classes_requiridas.each do |class_arq|
 	class_arq = class_arq.slice(/bin\/(.*)\.class$/,1)
 	require File.basename class_arq
 end

@@ -1,13 +1,17 @@
 module Ondas2
 	class Onda
-		attr_reader :amplitude,:lambda,:velocidade,:frequencia,:periodo
+		attr_reader :amplitude
+		attr_reader :lambda
+		attr_reader :velocidade
+		attr_reader :frequencia
+		attr_reader :periodo
+		
 		def initialize(dados={})
 			encontrado_dado_com_letras = dados.values.any?{|dado| dado.is_a?(String) && dado.match(/[^0-9.]/)}
 			raise OndaException, :ComLetras if encontrado_dado_com_letras
 			inicializa_atributos_com dados
 			checa_se_e_possivel_definir_a_onda_com_os dados
 			calcula_propriedades
-			checa_vericidade_dos_valores
 		end
 		
 		def inicializa_atributos_com(dados)
@@ -35,9 +39,11 @@ module Ondas2
 			@periodo = 1/@frequencia if @periodo.nil?
 		end
 		
-		def checa_vericidade_dos_valores
-			raise OndaException, :FrequenciaPeriodoErro if @frequencia != 1/@periodo
-			raise OndaException, :VelocidadeLambdaFrequenciaErro if @velocidade != @lambda * @frequencia
+		def y_when(args={})
+			x = args[:x]
+			time = args[:time]
+			pi = Math::PI
+			@amplitude * Math.sin((2*pi*(x-time*@velocidade)).to_f/@lambda)
 		end
 	end
 end

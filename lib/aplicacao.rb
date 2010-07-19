@@ -10,7 +10,9 @@ module Ondas2
 		def inicia(args={})
 			em_teste = args[:teste]
 		
-			@janela = self.usa :classe => Janela, :args => 'Visualizador de Ondas'
+			@janela = self.usa(:classe => Janela, 
+							   :args => [{:app_mae => self, 
+										 :titulo => 'Visualizador de Ondas'}])
 			cria_e_posiciona_outros_componentes
 			observador = ObservadorEventos.new self
 			@janela.visible = true unless em_teste
@@ -18,7 +20,13 @@ module Ondas2
 		
 		def cria_e_posiciona_outros_componentes
 			lbl_des_onda = self.usa :classe => JLabel, :args => 'Desenho da Onda'
-			pnl_des = self.usa :classe =>  PainelDesenho, :nome => 'desenho'
+			
+			pnl_des = self.usa :classe =>  PainelDesenho,
+							   :nome => 'desenho'
+			pnl_des.janela_mae = self.janela
+			thread = JThread.new pnl_des
+			thread.start
+			
 			pnl_des.background = Color::WHITE
 			pnl_des.border = BorderFactory.create_line_border(Color::BLACK)
 			
