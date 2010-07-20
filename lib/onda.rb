@@ -23,13 +23,6 @@ module Ondas2
 			@periodo = dados[:periodo].to_f unless dados[:periodo].nil?
 		end
 		
-		def checa_vericidade_dos_valores
-    	raise OndaException, :FrequenciaPeriodoErro if @frequencia != 1/@periodo && 
-    																								 @frequencia.to_s.to_f != 1/@periodo.to_s.to_f
-    	raise OndaException, :VelocidadeLambdaFrequenciaErro if @velocidade != @lambda * @frequencia &&
-    																													@velocidade.to_s.to_f != @lambda.to_s.to_f * @frequencia.to_s.to_f
-		end
-		
 		def checa_se_e_possivel_definir_a_onda_com_os(dados)
 			num_dados = 0
 			num_dados += 1 if !dados[:velocidade].nil?
@@ -45,6 +38,11 @@ module Ondas2
 			@velocidade = @lambda*@frequencia if @velocidade.nil?
 			@lambda = @velocidade / @frequencia if @lambda.nil?
 			@periodo = 1/@frequencia if @periodo.nil?
+		end
+		
+		def checa_vericidade_dos_valores
+			raise OndaException, :FrequenciaPeriodoErro if @frequencia.eh_diferente? 1/@periodo
+			raise OndaException, :VelocidadeLambdaFrequenciaErro if @velocidade.eh_diferente? @lambda * @frequencia
 		end
 		
 		def y_when(args={})

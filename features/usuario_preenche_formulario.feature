@@ -15,6 +15,7 @@ Funcionalidade: Usuario preenche o formulario
 		Dado que inicio o programa
 
 	# CASOS DE SUCESSO
+	@sucesso
 	Cenario: Usuario nao preenche a velocidade e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
@@ -23,7 +24,8 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "0.1" na "JTextField" "periodo"
 		E vejo a "JLabel" "erros" vazia
-
+	
+	@sucesso
 	Cenario: Usuario nao preenche o lambda e o periodo
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "velocidade" com "200"
@@ -32,7 +34,8 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "20" na "JTextField" "lambda"
 		E vejo "0.1" na "JTextField" "periodo" 
 		E vejo a "JLabel" "erros" vazia
-		
+	
+	@sucesso
 	Cenario: Usuario nao preenche a velocidade e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
@@ -41,7 +44,8 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "200" na "JTextField" "velocidade"
 		E vejo "10" na "JTextField" "frequencia"
 		E vejo a "JLabel" "erros" vazia
-		
+	
+	@sucesso
 	Cenario: Usuario nao preenche o lambda e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "velocidade" com "200"
@@ -50,7 +54,8 @@ Funcionalidade: Usuario preenche o formulario
 		Entao vejo "20" na "JTextField" "lambda"
 		E vejo "10" na "JTextField" "frequencia"
 		E vejo a "JLabel" "erros" vazia
-		
+	
+	@sucesso
 	Cenario: Usuario nao preenche o periodo e a frequencia
 		Dado que preencho a caixa de texto "amplitude" com "50"
 		E que preencho a caixa de texto "lambda" com "20"
@@ -60,6 +65,22 @@ Funcionalidade: Usuario preenche o formulario
 		E vejo "0.1" na "JTextField" "periodo"
 		E vejo a "JLabel" "erros" vazia
 
+	@sucesso @dizima
+	Cenario: Usuario utiliza valores que tornam o periodo uma dizima
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "30"
+		E que preencho a caixa de texto "velocidade" com "20"
+		Quando clico duas vezes no botao "Gerar Onda"
+		Entao vejo a "JLabel" "erros" vazia
+		
+	@sucesso @dizima
+	Cenario: Usuario utiliza valores que tornam a frequencia uma dizima
+		E que preencho a caixa de texto "amplitude" com "50"
+		E que preencho a caixa de texto "lambda" com "20"
+		E que preencho a caixa de texto "velocidade" com "30"
+		Quando clico duas vezes no botao "Gerar Onda"
+		Entao vejo a "JLabel" "erros" vazia
+		
 	# CASOS DE FALHA
 	# FALHA = DADOS INSUFICIENTES
 	Cenario: Usuario preenche a amplitude
@@ -193,11 +214,4 @@ Funcionalidade: Usuario preenche o formulario
 		E vejo "A frequencia deve ser o inverso do periodo." na "JLabel" "erros"
 		E que preencho a caixa de texto "periodo" com "0.1"
 		Quando clico no botao "Gerar Onda"
-		Entao vejo a "JLabel" "erros" vazia
-		
-	Cenario: Usuario utiliza valores que tornam o periodo uma dizima
-		E que preencho a caixa de texto "amplitude" com "50"
-		E que preencho a caixa de texto "lambda" com "30"
-		E que preencho a caixa de texto "velocidade" com "20"
-		Quando clico duas vezes no botao "Gerar Onda"
 		Entao vejo a "JLabel" "erros" vazia
