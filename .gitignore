@@ -2,4 +2,6 @@
 TESTES*
 *.class
 *~
-jruby.jar
+*.jar
+package/*
+*.ico
