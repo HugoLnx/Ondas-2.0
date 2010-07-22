@@ -6,6 +6,7 @@ require 'java'
 java_import javax.swing.BorderFactory
 java_import javax.swing.Box
 java_import javax.swing.BoxLayout
+java_import javax.swing.ImageIcon
 java_import javax.swing.JButton
 java_import javax.swing.JFrame
 java_import javax.swing.JLabel

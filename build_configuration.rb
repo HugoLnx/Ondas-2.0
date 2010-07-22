@@ -52,7 +52,7 @@ configuration do |c|
 	# Undocumented option 'files_to_copy'
 	# default value: []
 	#
-	c.files_to_copy = ['ondas2.ico']
+	c.files_to_copy = ['images/ondas2.png']
 
 	# Undocumented option 'target_jvm_version'
 	# default value: 1.6
@@ -89,6 +89,6 @@ configuration do |c|
 	# Undocumented option 'windows_icon_path'
 	# default value: "GenericJavaApp.ico"
 	#
-	c.windows_icon_path = "ondas2.ico"
+	# c.windows_icon_path = "ondas2.ico"
 
 end

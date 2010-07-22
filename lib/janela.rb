@@ -9,6 +9,10 @@ module Ondas2
 			self.resizable = false
 			self.default_close_operation = JFrame::EXIT_ON_CLOSE
 			self.content_pane.layout = BorderLayout.new
+			
+			icone = ImageIcon.new 'images/ondas2.png'
+			self.icon_image = icone.image
+			
 		end
 	end
 end
