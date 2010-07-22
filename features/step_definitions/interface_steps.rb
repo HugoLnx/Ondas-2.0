@@ -38,3 +38,8 @@ Entao /^vejo a "([^"]*)" "([^"]*)" vazia$/ do |classe_comp_s, nome|
   caixa_txt = @app.componentes.o_de_classe_e_nome classe_comp, nome
   caixa_txt.text.strip.should be_empty
 end
+
+Entao /^devo vizualizar a opcao "([^"]*)" na JMenuBar$/ do |opcao|
+  pending # express the regexp above with the code you wish you had
+end
+

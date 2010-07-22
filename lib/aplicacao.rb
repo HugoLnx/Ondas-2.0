@@ -19,10 +19,12 @@ module Ondas2
 		end
 		
 		def cria_e_posiciona_outros_componentes
+			jmenu_bar = JMenuBar.new#self.usa :classe => JMenuBar, :nome => 'barra_menu'
+			@janela.setJMenuBar(jmenu_bar)
+		
 			lbl_des_onda = self.usa :classe => JLabel, :args => 'Desenho da Onda'
 			
-			pnl_des = self.usa :classe =>  PainelDesenho,
-							   :nome => 'desenho'
+			pnl_des = self.usa :classe =>  PainelDesenho, :nome => 'desenho'
 			pnl_des.janela_mae = self.janela
 			thread = JThread.new pnl_des
 			thread.start

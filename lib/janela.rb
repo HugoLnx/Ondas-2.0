@@ -5,7 +5,7 @@ module Ondas2
 			titulo = args[:titulo]
 			super titulo
 			@app_mae = args[:app_mae]
-			self.set_size 305,273
+			self.set_size 400,273
 			self.resizable = false
 			self.default_close_operation = JFrame::EXIT_ON_CLOSE
 			self.content_pane.layout = BorderLayout.new

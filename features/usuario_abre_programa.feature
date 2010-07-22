@@ -21,3 +21,5 @@ Funcionalidade: Usuario abre o programa
 		E devo vizualizar a "JLabel" "Periodo"
 		E devo vizualizar o "JTextField" "periodo"
 		E devo vizualizar o "JButton" "Gerar Onda"
+		E devo vizualizar a "JMenuBar" "barra_menu"
+		E devo vizualizar a opcao "About" na JMenuBar

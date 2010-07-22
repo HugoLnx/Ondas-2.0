@@ -9,8 +9,5 @@ module Ondas2
 		it 'deveria ser instanciavel' do
 			lambda{PainelDesenho.new}.should_not raise_error
 		end
-		
-		
-		context 'apos ser instanciado'
 	end
 end
