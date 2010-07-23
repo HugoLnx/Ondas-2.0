@@ -11,6 +11,8 @@ java_import javax.swing.JButton
 java_import javax.swing.JFrame
 java_import javax.swing.JLabel
 java_import javax.swing.JMenuBar
+java_import javax.swing.JMenu
+java_import javax.swing.JMenuItem
 java_import javax.swing.JPanel
 java_import javax.swing.JTextField
 

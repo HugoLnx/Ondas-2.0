@@ -16,9 +16,9 @@ module Ondas2
 				@j = Janela.new 'Janela Principal'#, :aplicacao_mae => @app
 			end
 			
-			it 'deveria ter tamanho 400 x 273' do
+			it 'deveria ter tamanho 400 x 340' do
 				tamanho = [@j.size.width,@j.size.height]
-				tamanho.should be_eql [400,273]
+				tamanho.should be_eql [400,340]
 			end
 			
 			it 'nao deveria ser redimensionavel' do

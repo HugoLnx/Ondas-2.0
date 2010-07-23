@@ -20,8 +20,22 @@ module Ondas2
 		
 		def cria_e_posiciona_outros_componentes
 			jmenu_bar = JMenuBar.new#self.usa :classe => JMenuBar, :nome => 'barra_menu'
+			jmenu_arq = JMenu.new 'Arquivo'
+			jmenu_salvar_item = JMenuItem.new 'Salvar como...'
+			jmenu_visu_item = JMenuItem.new 'Visualizacao Externa'
+			jmenu_sair_item = JMenuItem.new 'Sair'
+			jmenu_arq.add jmenu_salvar_item
+			jmenu_arq.add jmenu_visu_item
+			jmenu_arq.add jmenu_sair_item
+			jmenu_about = JMenu.new 'About'
+			jmenu_ondas_item = JMenuItem.new 'Ondas 2.0'
+			jmenu_autor_item = JMenuItem.new 'Autor'
+			jmenu_about.add jmenu_ondas_item
+			jmenu_about.add jmenu_autor_item
+			jmenu_bar.add jmenu_arq
+			jmenu_bar.add jmenu_about
 			@janela.setJMenuBar(jmenu_bar)
-		
+			
 			lbl_des_onda = self.usa :classe => JLabel, :args => 'Desenho da Onda'
 			
 			pnl_des = self.usa :classe =>  PainelDesenho, :nome => 'desenho'
