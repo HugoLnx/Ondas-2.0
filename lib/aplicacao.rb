@@ -19,22 +19,18 @@ module Ondas2
 		end
 		
 		def cria_e_posiciona_outros_componentes
-			jmenu_bar = JMenuBar.new#self.usa :classe => JMenuBar, :nome => 'barra_menu'
-			jmenu_arq = JMenu.new 'Arquivo'
-			jmenu_salvar_item = JMenuItem.new 'Salvar como...'
-			jmenu_visu_item = JMenuItem.new 'Visualizacao Externa'
-			jmenu_sair_item = JMenuItem.new 'Sair'
-			jmenu_arq.add jmenu_salvar_item
-			jmenu_arq.add jmenu_visu_item
-			jmenu_arq.add jmenu_sair_item
-			jmenu_about = JMenu.new 'About'
-			jmenu_ondas_item = JMenuItem.new 'Ondas 2.0'
-			jmenu_autor_item = JMenuItem.new 'Autor'
-			jmenu_about.add jmenu_ondas_item
-			jmenu_about.add jmenu_autor_item
-			jmenu_bar.add jmenu_arq
-			jmenu_bar.add jmenu_about
-			@janela.setJMenuBar(jmenu_bar)
+			barra_menu = self.usa :classe => BarraMenu, 
+								  :nome => 'barra_menu' do |barra|
+				barra.add_aba 'Arquivo' do |arq_aba|
+					arq_aba.add_item 'Salvar como...'
+					arq_aba.add_item 'Visualizacao Externa'
+					arq_aba.add_item 'Sair'
+				end
+				barra.add_aba 'About' do |aba_about|
+					aba_about.add_item 'Ondas 2.0'
+					aba_about.add_item 'Desenvolvedor'
+				end
+			end
 			
 			lbl_des_onda = self.usa :classe => JLabel, :args => 'Desenho da Onda'
 			
@@ -123,12 +119,16 @@ module Ondas2
 			pane.add form, BorderLayout::SOUTH
 		end
 		
-		def usa(args={})
+		def usa(args={},&block)
 			classe = args[:classe]
 			nome = args[:nome]
 			args_construtor = args[:args]
 			
-			comp = classe.method(:new).call(*args_construtor)
+			if args_construtor.nil?
+				comp = classe.method(:new).call(&block)
+			else
+				comp = classe.method(:new).call(*args_construtor,&block)
+			end
 			
 			nome = comp.text if nome.nil? and (comp.kind_of? JButton or comp.kind_of? JLabel)
 			nome = comp.title if comp.kind_of? JFrame and nome.nil?

@@ -39,7 +39,13 @@ Entao /^vejo a "([^"]*)" "([^"]*)" vazia$/ do |classe_comp_s, nome|
   caixa_txt.text.strip.should be_empty
 end
 
-Entao /^devo vizualizar a opcao "([^"]*)" na JMenuBar$/ do |opcao|
-  pending # express the regexp above with the code you wish you had
+Entao (/^devo vizualizar as abas: "([^"]*)"$/) do |abas_s|
+  barra_menu = @app.componentes.o_de_classe_e_nome Ondas2::BarraMenu, 'barra_menu'
+  abas = abas_s.split ','
+  abas.each do |texto_aba|
+	tem_aba = barra_menu.sub_elements.any?{|menu_aba| 
+		menu_aba.text == texto_aba}
+	tem_aba.should be_true
+  end
 end
 
