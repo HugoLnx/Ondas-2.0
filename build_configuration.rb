@@ -7,7 +7,7 @@ configuration do |c|
 	# Undocumented option 'output_dir'
 	# default value: "package"
 	#
-	#c.output_dir = "package"
+	c.output_dir = "bin"
 
 	# Undocumented option 'main_ruby_file'
 	# default value: "main"
@@ -22,7 +22,7 @@ configuration do |c|
 	# Undocumented option 'source_dirs'
 	# default value: ["src", "lib/ruby"]
 	#
-	#c.source_dirs = ["src", "lib/ruby"]
+	#c.source_dirs = ["src", "lib"]
 
 	# Undocumented option 'source_exclude_filter'
 	# default value: []
@@ -32,7 +32,7 @@ configuration do |c|
 	# Undocumented option 'jruby_jar'
 	# default value: "lib/java/jruby-complete.jar"
 	#
-	#c.jruby_jar = "lib/java/jruby-complete.jar"
+	c.jruby_jar = "ext/jruby-complete.jar"
 
 	# Undocumented option 'compile_ruby_files'
 	# default value: true

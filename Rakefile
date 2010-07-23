@@ -1,7 +1,8 @@
 require 'rawr'
 
 DIR_RB = 'lib'
-DIR_CLASS = 'package/classes/ruby'
+DIR_CLASS = 'bin/classes/ruby'
+JRUBY_JAR = 'ext/jruby-complete.jar'
 
 task :compilar do
 	aqui = File.dirname __FILE__
@@ -30,16 +31,15 @@ task :compilar do
 		end
 	end
 	
-	scripts_na_lib_lib = (Dir[File.join(aqui,"#{DIR_RB}/**.rb")]).sort
-	scripts_na_lib = Dir[File.join(aqui,'lib/*.rb')].sort
+	scripts_na_lib = (Dir[File.join(aqui,"#{DIR_RB}/**/*.rb")]).sort
 	puts '=> Compilando scripts ...'
-	threads = []
 	dir = File.join aqui, DIR_RB
-	scripts_na_lib_lib.each do |script|
+	scripts_na_lib.each do |script|
 			sh "jruby -S jrubyc \"#{script}\" -d \"#{dir}\" -t \"#{DIR_CLASS}/\""
 	end
 end
 
 task :executar do
-	sh "java -jar lib/java/jruby-complete.jar package/classes/ruby/main.class"
+	aqui = File.dirname __FILE__
+	sh "java -jar #{JRUBY_JAR} #{File.join(aqui,DIR_CLASS,'main.class')}"
 end

@@ -30,9 +30,9 @@ java_import java.lang.Runnable
 JThread = java.lang.Thread
 
 # Dando require de todas as classes do diretorio bin
-classes_requiridas = Dir[File.join(aqui,'**.class')]
+classes_requiridas = Dir[File.join(aqui,'**/*.class')]
 classes_requiridas.delete_if{|path| path.include? 'ondas2.class' or path.include? 'main.class'}
 classes_requiridas.each do |class_arq|
-	class_arq = class_arq.slice(/\/(.*)\.class$/,1)
-	require File.basename class_arq
+	class_arq = class_arq.slice(/#{aqui}\/(.*)\.class$/,1)
+	require class_arq
 end
