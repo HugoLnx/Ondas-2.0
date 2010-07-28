@@ -25,24 +25,34 @@ module Ondas2
 					end
 		
 					it 'deveria ter amplitude' do
-						@onda.amplitude.should_not be_nil
+						@onda.instance_variable_get(:@amplitude).should_not be_nil
 					end
 			
 					it 'deveria ter lambda' do
-						@onda.lambda.should_not be_nil
+						@onda.instance_variable_get(:@lambda).should_not be_nil
 					end
 			
 					it 'deveria ter velocidade' do
-						@onda.velocidade.should_not be_nil
+						@onda.instance_variable_get(:@velocidade).should_not be_nil
 					end
 			
 					it 'deveria ter frequencia' do
-						@onda.frequencia.should_not be_nil
+						@onda.instance_variable_get(:@frequencia).should_not be_nil
 					end
 			
 					it 'deveria ter periodo' do
-						@onda.periodo.should_not be_nil
+						@onda.instance_variable_get(:@periodo).should_not be_nil
 					end
+					
+					it 'deveria retornar uma hash com suas propriedades' do
+						@onda.propriedades.should be_eql(:amplitude => 50.0,
+														 :lambda => 20.0,
+														 :velocidade => 200.0,
+														 :frequencia => 10.0,
+														 :periodo => 0.1)
+					end
+					
+					it 'deveria retornar a coordenada y de um ponto de acordo com o x e o tempo'
 				end
 		
 				context 'apos ser instanciada passando lambda = 20 e frequencia = 10' do
@@ -53,11 +63,11 @@ module Ondas2
 					end
 			
 					it 'deveria ter velocidade igual a 200' do
-						@onda.velocidade.should be_eql 200.0
+						@onda.propriedades[:velocidade].should be_eql 200.0
 					end
 			
 					it 'deveria ter periodo igual a 0.1' do
-						@onda.periodo.should be_eql 0.1
+						@onda.propriedades[:periodo].should be_eql 0.1
 					end
 				end
 		
@@ -69,11 +79,11 @@ module Ondas2
 					end
 			
 					it 'deveria ter lambda igual a 20' do
-						@onda.lambda.should be_eql 20.0
+						@onda.propriedades[:lambda].should be_eql 20.0
 					end
 			
 					it 'deveria ter periodo igual a 0.1' do
-						@onda.periodo.should be_eql 0.1
+						@onda.propriedades[:periodo].should be_eql 0.1
 					end
 				end
 		
@@ -85,11 +95,11 @@ module Ondas2
 					end
 			
 					it 'deveria ter velocidade igual a 200' do
-						@onda.velocidade.should be_eql 200.0
+						@onda.propriedades[:velocidade].should be_eql 200.0
 					end
 			
 					it 'deveria ter frequencia igual a 10' do
-						@onda.frequencia.should be_eql 10.0
+						@onda.propriedades[:frequencia].should be_eql 10.0
 					end
 				end
 		
@@ -101,11 +111,11 @@ module Ondas2
 					end
 			
 					it 'deveria ter lambda igual a 20' do
-						@onda.lambda.should be_eql 20.0
+						@onda.propriedades[:lambda].should be_eql 20.0
 					end
 			
 					it 'deveria ter frequencia igual a 10' do
-						@onda.frequencia.should be_eql 10.0
+						@onda.propriedades[:frequencia].should be_eql 10.0
 					end
 				end
 		
@@ -117,11 +127,11 @@ module Ondas2
 					end
 			
 					it 'deveria ter frequencia igual a 10' do
-						@onda.frequencia.should be_eql 10.0
+						@onda.propriedades[:frequencia].should be_eql 10.0
 					end
 			
 					it 'deveria ter periodo igual a 0.1' do
-						@onda.periodo.should be_eql 0.1
+						@onda.propriedades[:periodo].should be_eql 0.1
 					end
 				end
 		

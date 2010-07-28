@@ -1,12 +1,6 @@
 module Ondas2
 	module Modelos
 		class Onda
-			attr_reader :amplitude
-			attr_reader :lambda
-			attr_reader :velocidade
-			attr_reader :frequencia
-			attr_reader :periodo
-		
 			def initialize(dados={})
 				encontrado_dado_com_letras = dados.values.any?{|dado| dado.is_a?(String) && dado.match(/[^0-9.]/)}
 				raise InfraE::OndaException, :ComLetras if encontrado_dado_com_letras
@@ -44,6 +38,14 @@ module Ondas2
 			def checa_vericidade_dos_valores
 				raise InfraE::OndaException, :FrequenciaPeriodoErro if @frequencia.eh_diferente? 1/@periodo
 				raise InfraE::OndaException, :VelocidadeLambdaFrequenciaErro if @velocidade.eh_diferente? @lambda * @frequencia
+			end
+		
+			def propriedades
+				{:amplitude => @amplitude,
+				 :lambda => @lambda,
+				 :velocidade => @velocidade,
+				 :frequencia => @frequencia,
+				 :periodo => @periodo}
 			end
 		
 			def y_when(args={})

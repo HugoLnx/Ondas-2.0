@@ -13,5 +13,6 @@ este sera desenvolvido utilizando...
 
 ### Sobre mim ###
 *   _Nome:_ Hugo Roque
-*   _Email:_ hugolnx@gmail.com
+*   _Email:_ hugo.roque@caelum.com.br
 *   _Twitter:_ http://twitter.com/hugolnx
+*	_Blog:_ http://hugolnx.wordpress.com/

@@ -47,7 +47,7 @@ configuration do |c|
 	# Undocumented option 'java_lib_dirs'
 	# default value: ["lib/java"]
 	#
-	#c.java_lib_dirs = ["lib/java"]
+	c.java_lib_dirs = ["ext"]
 
 	# Undocumented option 'files_to_copy'
 	# default value: []

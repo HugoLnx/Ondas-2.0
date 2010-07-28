@@ -16,12 +16,11 @@ module Ondas2
 			context 'apos sua instancializacao' do
 				before do
 					@app = Ondas2::Modelos::InfraE::Aplicacao.new
-					@j = Janela.new 'Janela Principal'#, :aplicacao_mae => @app
+					@j = Janela.new
 				end
 		
-				it 'deveria ter tamanho 400 x 340' do
-					tamanho = [@j.size.width,@j.size.height]
-					tamanho.should be_eql [400,340]
+				it 'deveria ter um titulo' do
+					@j.title.should_not be_nil
 				end
 		
 				it 'nao deveria ser redimensionavel' do
@@ -34,6 +33,37 @@ module Ondas2
 		
 				it 'deveria ter o icone ondas2' do
 					@j.icon_image.buffered_image.should_not be_nil
+				end
+				
+				it 'deveria poder retornar uma hash de seus componentes' do
+					lambda{
+						@j.componentes.should be_a Hash
+					}.should_not raise_error
+				end
+				
+				it 'deveria poder retornar os valores de seus campos de texto' do
+					lambda{
+						@j.valores_dos_campos_de_texto.should be_a Hash
+					}.should_not raise_error
+				end
+				
+				it 'deveria notificar os erros' do
+					lambda{@j.notifica_erro 'Deu Pau!'}.should_not raise_error
+					@j.componentes[:lbl_erros].text.should be_eql 'Deu Pau!'
+				end
+				
+				it 'deveria limpar a label de erros' do
+					lambda{@j.limpa_notificacoes_de_erro}.should_not raise_error
+					@j.componentes[:lbl_erros].text.should be_eql ' '
+				end
+				
+				it 'deveria atualizar seus campos de texto' do
+					@j.atualiza_campos_de_texto_com({:amplitude => 40.0,
+													 :lambda => 20.0,
+													 :velocidade => 200.0,
+													 :frequencia => 10.0,
+													 :periodo => 0.1
+													})
 				end
 			end
 		end

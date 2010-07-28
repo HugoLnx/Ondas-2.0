@@ -30,9 +30,10 @@ java_import java.lang.Runnable
 JThread = java.lang.Thread
 
 # Dando require de todas as classes do diretorio bin
-classes_requiridas = Dir[File.join(aqui,'**/*.class')]
-classes_requiridas.delete_if{|path| path.include? 'ondas2.class' or path.include? 'main.class'}
-classes_requiridas.each do |class_arq|
-	class_arq = class_arq.slice(/#{aqui}\/(.*)\.class$/,1)
-	require class_arq
+ext = File.extname(__FILE__)
+requiridos = Dir[File.join(aqui,"**/*#{ext}")]
+requiridos.delete_if{|path| path.include? "ondas2#{ext}" or path.include? "main#{ext}"}
+requiridos.each do |class_arq|
+	requirido = class_arq.slice(/#{aqui}\/(.*)#{ext}$/,1)
+	require requirido
 end
