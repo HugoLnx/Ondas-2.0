@@ -23,6 +23,10 @@ module Ondas2
 					@fabrica_ondas = mock :fabrica_ondas
 					@observador = Observador.new :janela => @janela,
 												 :fabrica_ondas => @fabrica_ondas
+					@animador = mock(:animador)
+					@observador.instance_variable_set(:@animador,@animador)
+					@classe_animador = Ondas2::Modelos::InfraE::Animador = mock(:classe_animador)
+					@novo_animador = mock(:novo_animador)
 				end
 				
 				it 'deveria ter referencia a uma janela' do
@@ -38,6 +42,7 @@ module Ondas2
 				context 'ao receber um sinal' do
 					context 'se os dados foram preenchidos corretamente(sem frequencia e periodo)' do
 						before :all do
+							@classe_animador.stub!(:new).with(any_args).and_return(@novo_animador)
 							@janela.stub!(:valores_dos_campos_de_texto).and_return({
 								:amplitude => '40',
 								:lambda => '20',
@@ -45,17 +50,19 @@ module Ondas2
 								:frequencia => '',
 								:periodo => ''
 							})
-						end
-						
-						it 'deveria providenciar a fabricacao de uma onda, o desaparecimento das notificacoes de erro e a atualizacao dos campos de texto' do
-							onda = mock(:onda)
-							onda.stub!(:propriedades).and_return({
+							
+							@onda = mock(:onda)
+							@onda.stub!(:propriedades).and_return({
 								:amplitude => 40.0,
 								:lambda => 20.0,
 								:velocidade => 200.0,
 								:frequencia => 10.0,
 								:periodo => 0.1
 							})
+						end
+						
+						it 'deveria providenciar a fabricacao de uma onda, o desaparecimento das notificacoes de erro, a atualizacao dos campos de texto e a criacao do animador' do				
+							@animador.should_receive(:matar)
 							
 							@fabrica_ondas.should_receive(:fabrica_onda_com).
 								with({
@@ -64,14 +71,16 @@ module Ondas2
 									:velocidade => '200',
 									:frequencia => '',
 									:periodo => ''
-								}).and_return(onda)
-								@janela.should_receive(:limpa_notificacoes_de_erro)
+								}).and_return(@onda)
+								@janela.should_receive :limpa_notificacoes_de_erro
 								@janela.should_receive(:atualiza_campos_de_texto_com).
 								with({:amplitude => 40.0,
 									  :lambda => 20.0,
 									  :velocidade => 200.0,
 									  :frequencia => 10.0,
 									  :periodo => 0.1})
+								@novo_animador.should_receive :start
+								
 						end
 						
 						after do
@@ -89,15 +98,15 @@ module Ondas2
 								:frequencia => '',
 								:periodo => ''
 							})
-						end
-						
-						it 'deveria providenciar a fabricacao de uma onda, e notificar o erro' do
 							if Ondas2::Modelos::InfraE::OndaException.nil?
 								Ondas2::Modelos::InfraE::OndaException = Exception
 							end
-							onda_exception = Ondas2::Modelos::InfraE::OndaException.new
-							onda_exception.stub!(:mensagem_notificacao).and_return('Mensagem de Erro')
-							
+							@onda_exception = Ondas2::Modelos::InfraE::OndaException.new
+							@onda_exception.stub!(:mensagem_notificacao).and_return('Mensagem de Erro')
+						end
+						
+						it 'deveria providenciar a fabricacao de uma onda, e notificar o erro' do				
+							@animador.should_receive(:matar)
 							@fabrica_ondas.should_receive(:fabrica_onda_com).
 								with({
 									:amplitude => '',
@@ -105,7 +114,7 @@ module Ondas2
 									:velocidade => '',
 									:frequencia => '',
 									:periodo => ''
-								}).and_raise(onda_exception)
+								}).and_raise(@onda_exception)
 								@janela.should_receive(:notifica_erro).with('Mensagem de Erro').once
 						end
 						

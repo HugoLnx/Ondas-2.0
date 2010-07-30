@@ -19,9 +19,13 @@ module Ondas2
 			
 			def clicou_botao_gerar
 				begin
+					@animador.matar unless @animador.nil?
 					@onda = @fabrica_ondas.fabrica_onda_com @janela.valores_dos_campos_de_texto
 					@janela.limpa_notificacoes_de_erro
 					@janela.atualiza_campos_de_texto_com @onda.propriedades
+					@animador = Ondas2::Modelos::InfraE::Animador.new :onda => @onda,
+																														:painel => @janela.componentes[:pnl_des]
+					@animador.start
 				rescue Ondas2::Modelos::InfraE::OndaException => erro
 					@janela.notifica_erro erro.mensagem_notificacao
 				end

@@ -7,12 +7,23 @@ module Ondas2
 					old_initialize
 					@onda = args[:onda]
 					@painel = args[:painel]
-					@tempo = 0
+					@tempo = 0.0
+					@viva = true
+				end
+				
+				def matar
+					@painel.pintar_onda_com nil
+					@viva = false
 				end
 				
 				def run
 					loop do
-						@painel.repaint(:pontos => @onda.gerar_pontos)
+						if @viva
+							ys = @onda.gerar_ys(:tempo => @tempo, :x_max => @painel.width)
+							@painel.pintar_onda_com ys
+							JThread.sleep 0.1
+							@tempo += 0.1
+						end
 					end
 				end
 			end

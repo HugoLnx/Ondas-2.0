@@ -15,7 +15,6 @@ module Ondas2
 	
 			context 'apos sua instancializacao' do
 				before do
-					@app = Ondas2::Modelos::InfraE::Aplicacao.new
 					@j = Janela.new
 				end
 		

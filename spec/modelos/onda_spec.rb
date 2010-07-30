@@ -52,7 +52,27 @@ module Ondas2
 														 :periodo => 0.1)
 					end
 					
-					it 'deveria retornar a coordenada y de um ponto de acordo com o x e o tempo'
+					it 'deveria retornar a coordenada y de um ponto de acordo com o x e o tempo' do
+						amplitude = @onda.instance_variable_get(:@amplitude)
+						velocidade = @onda.instance_variable_get(:@velocidade)
+						lambda = @onda.instance_variable_get(:@lambda)
+						pi = Math::PI
+						tempo = rand(100)
+						x = rand(100)
+						y = @onda.y_quando(:tempo => tempo,
+															 :x => x)
+						y.should be_eql amplitude * Math.sin((2*pi*(x-tempo*velocidade)).to_f/lambda)
+					end
+					
+					it 'deveria gerar as suas coordenadas y de um tempo' do
+						tempo = rand(100)
+						x_max = 100
+						ys = @onda.gerar_ys(:tempo => tempo,
+											 				  :x_max => x_max)
+						ys.each_with_index do |y,x|
+							y.should be_eql @onda.y_quando(:tempo => tempo,:x => x)
+						end
+					end
 				end
 		
 				context 'apos ser instanciada passando lambda = 20 e frequencia = 10' do

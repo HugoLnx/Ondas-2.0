@@ -15,10 +15,11 @@ module Ondas2
 				context 'apos ser instanciado' do
 					before :all do
 						@onda = mock(:onda)
-						@onda.stub!(:gerar_pontos).and_return(mock(:pontos))
 						@painel = mock(:painel)
 						@animador = Animador.new(:onda => @onda,
-												 :painel => @painel)
+																		 :painel => @painel)
+						@onda.stub!(:gerar_ys).with(any_args).and_return(mock(:pontos))
+						@painel.stub!(:repaint).with(:ys => @onda.gerar_ys(any_args))
 					end
 					
 					it 'deveria ter um tempo' do
@@ -34,7 +35,12 @@ module Ondas2
 					end
 					
 					it 'deveria poder ser executavel' do
-						@animador.method(:start).should_not raise_error NoMethodError
+						@animador.method(:run).should_not raise_error NoMethodError
+					end
+					
+					context 'apos ser executado' do
+						it 'deveria atualizar o tempo a cada 50 milisegundos'
+						it 'deveria repintar o JPanel a cada 50 milisegundos'
 					end
 				end
 			end

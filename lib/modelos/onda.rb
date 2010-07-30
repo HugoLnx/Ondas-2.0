@@ -48,11 +48,21 @@ module Ondas2
 				 :periodo => @periodo}
 			end
 		
-			def y_when(args={})
+			def y_quando(args={})
 				x = args[:x]
-				time = args[:time]
+				tempo = args[:tempo]
 				pi = Math::PI
-				@amplitude * Math.sin((2*pi*(x-time*@velocidade)).to_f/@lambda)
+				@amplitude * Math.sin((2*pi*(x-tempo*@velocidade)).to_f/@lambda)
+			end
+			
+			def gerar_ys(args={})
+				tempo = args[:tempo]
+				x_max = args[:x_max]
+				ys = []
+				x_max.times do |x|
+					ys << y_quando(:tempo => tempo, :x => x)
+				end
+				ys
 			end
 		end
 	end

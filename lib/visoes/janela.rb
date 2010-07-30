@@ -26,8 +26,8 @@ module Ondas2
 					criar_menu
 					criar_labels
 					criar_text_fields
-					@pnl_des = Ondas2::Visoes::Helpers::PainelDesenho.new
-					@pnl_des.janela_mae = self
+					@pnl_des = Ondas2::Visoes::Helpers::PainelVisualizacao.new
+					#@pnl_des.janela_mae = self
 					#thread = JThread.new @pnl_des
 					#thread.start
 					@pnl_des.background = Color::WHITE
