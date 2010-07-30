@@ -15,6 +15,7 @@ java_import javax.swing.JMenu
 java_import javax.swing.JMenuItem
 java_import javax.swing.JPanel
 java_import javax.swing.JTextField
+java_import javax.swing.Timer
 
 java_import java.awt.BorderLayout
 java_import java.awt.Color
