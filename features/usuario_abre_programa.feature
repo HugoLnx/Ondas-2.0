@@ -21,4 +21,4 @@ Funcionalidade: Usuario abre o programa
 		E devo vizualizar o "JTextField" "periodo"
 		E devo vizualizar o "JButton" "Gerar Onda"
 		E devo vizualizar a "BarraMenu" "barra_menu"
-		E devo vizualizar as abas: "Arquivo,About"
+		E devo vizualizar as abas: "Arquivo,Sobre"
