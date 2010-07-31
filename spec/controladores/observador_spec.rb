@@ -5,9 +5,12 @@ module Ondas2
 		describe 'Um Observador' do
 			it 'deveria ser instanciavel' do
 				janela = mock :janela
-				janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar)})
+				janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar),
+													   :timer => mock(:timer),
+													   :barra_menu => mock(:barra_menu)})
 				janela.componentes[:btn_gerar].stub!(:add_action_listener).with any_args
 				janela.componentes[:timer].stub!(:add_action_listener).with any_args
+				janela.componentes[:barra_menu].stub!(:add_action_listener).with any_args
 				fabrica_ondas = mock :fabrica_ondas
 				fabrica_ondas.stub!(:fabricar).and_return(mock(:onda))
 				lambda{
@@ -21,10 +24,12 @@ module Ondas2
 					@janela = mock :janela
 					@janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar),
 															:timer => mock(:timer),
-															:pnl_des => mock(:pnl_des)})
+															:pnl_des => mock(:pnl_des),
+															:barra_menu => mock(:barra_menu)})
 					@evento = mock(:evento)
 					@janela.componentes[:btn_gerar].stub!(:add_action_listener).with any_args
 					@janela.componentes[:timer].stub!(:add_action_listener).with any_args
+					@janela.componentes[:barra_menu].stub!(:add_action_listener).with any_args
 					@fabrica_ondas = mock :fabrica_ondas
 					@observador = Observador.new :janela => @janela,
 												 :fabrica_ondas => @fabrica_ondas
