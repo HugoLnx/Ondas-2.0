@@ -1,5 +1,7 @@
 aqui = File.dirname __FILE__
+java_classes_dir = File.join aqui, '../java'
 $LOAD_PATH << aqui
+$LOAD_PATH << java_classes_dir
 
 require 'java'
 
@@ -17,10 +19,12 @@ java_import javax.swing.JMenuItem
 java_import javax.swing.JPanel
 java_import javax.swing.JTextField
 java_import javax.swing.Timer
+java_import java.net.URI
 
 java_import java.awt.BorderLayout
 java_import java.awt.Color
 java_import java.awt.Container
+java_import java.awt.Desktop
 java_import java.awt.Dimension
 java_import java.awt.GridBagLayout
 java_import java.awt.GridBagConstraints
@@ -34,7 +38,7 @@ JThread = java.lang.Thread
 # Dando require de todas as classes do diretorio bin
 ext = File.extname(__FILE__)
 requiridos = Dir[File.join(aqui,"**/*#{ext}")]
-requiridos.delete_if{|path| path.include? "/ondas2#{ext}" or path.include? "main#{ext}"}
+requiridos.delete_if{|path| path.include? "/ondas2#{ext}" or path.include? "main#{ext}" or path.include? "BasicLinkButton" or path.include? "JLinkButton"}
 requiridos.each do |class_arq|
 	requirido = class_arq.slice(/#{aqui}\/(.*)#{ext}$/,1)
 	require requirido

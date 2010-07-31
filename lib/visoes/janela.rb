@@ -18,7 +18,7 @@ module Ondas2
 				borda_invisivel = BorderFactory.create_empty_border(6,6,6,6)
 				self.content_pane.border = borda_invisivel
 			
-				icone = ImageIcon.new 'images/ondas2.png'
+				icone = ImageIcon.new 'images/ondas2_32x32.png'
 				self.icon_image = icone.image
 			end
 			
