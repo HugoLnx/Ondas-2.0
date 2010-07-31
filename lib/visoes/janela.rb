@@ -41,7 +41,7 @@ module Ondas2
 							arq_aba.add_item 'Visualizacao Externa'
 							arq_aba.add_item 'Sair'
 						end
-						barra.add_aba 'About' do |aba_about|
+						barra.add_aba 'Sobre' do |aba_about|
 							aba_about.add_item 'Ondas 2.0'
 							aba_about.add_item 'Desenvolvedor'
 						end

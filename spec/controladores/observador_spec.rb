@@ -3,6 +3,12 @@ require 'spec_helper'
 module Ondas2
 	module Controladores
 		describe 'Um Observador' do
+			before :all do
+				Ondas2::Visoes::JanelaAboutOndas2 = mock(:classe_janela_about_ondas2)
+				Ondas2::Visoes::JanelaAboutOndas2.stub!(:new).with(any_args).and_return(mock(:janela_about_ondas2))
+				Ondas2::Visoes::JanelaAboutDesenvolvedor = mock(:classe_janela_about_desenvolvedor)
+				Ondas2::Visoes::JanelaAboutDesenvolvedor.stub!(:new).with(any_args).and_return(mock(:janela_about_desenvolvedor))
+			end
 			it 'deveria ser instanciavel' do
 				janela = mock :janela
 				janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar),
@@ -34,6 +40,11 @@ module Ondas2
 					@observador = Observador.new :janela => @janela,
 												 :fabrica_ondas => @fabrica_ondas
 					@onda = mock(:onda)
+					@janela.componentes[:barra_menu].stub!(:abas).and_return({'Arquivo' => mock(:aba_arq),
+																			  'Sobre' => mock(:aba_sobre)})
+					@janela.componentes[:barra_menu].abas['Arquivo'].stub!(:itens).and_return({'Sair' => mock(:item_sair)})
+					@janela.componentes[:barra_menu].abas['Sobre'].stub!(:itens).and_return({'Ondas 2.0' => mock(:item_ondas2)})
+					@janela.componentes[:barra_menu].abas['Sobre'].stub!(:itens).and_return({'Desenvolvedor' => mock(:item_desenvolvedor)})
 				end
 				
 				it 'deveria ter referencia a uma janela' do
@@ -131,6 +142,7 @@ module Ondas2
 						
 					end
 				end
+				
 				context 'ao receber um sinal do timer' do
 					before :all do
 						@evento.stub!(:source).and_return(@janela.componentes[:timer])
@@ -145,6 +157,50 @@ module Ondas2
 					it 'deveria repintar o painel e mandar o timer incrementar_tempo' do
 						@janela.componentes[:pnl_des].should_receive(:pintar_onda_com).with(@ys)
 						@janela.componentes[:timer].should_receive(:incrementar_tempo)
+					end
+					
+					after do
+						@observador.action_performed(@evento)
+					end
+				end
+				
+				context 'ao receber um sinal do item Sair do menu' do
+					before :all do
+						
+						@evento.stub!(:source).and_return(@janela.componentes[:barra_menu].abas['Arquivo'].itens['Sair'])
+						@janela.stub! :dispose
+					end
+					
+					it 'deveria sair da aplicacao' do
+						@janela.should_receive :dispose
+					end
+					
+					after do
+						@observador.action_performed(@evento)
+					end
+				end
+				
+				context 'ao receber um sinal do item Ondas 2.0 do menu' do
+					before :all do
+						@evento.stub!(:source).and_return(@janela.componentes[:barra_menu].abas['Sobre'].itens['Ondas 2.0'])
+					end
+					
+					it 'deveria sair da aplicacao' do
+						@observador.instance_variable_get(:@janela_about_ondas2).should_receive(:mostrar)
+					end
+					
+					after do
+						@observador.action_performed(@evento)
+					end
+				end
+				
+				context 'ao receber um sinal do item Desenvolvedor do menu' do
+					before :all do
+						@evento.stub!(:source).and_return(@janela.componentes[:barra_menu].abas['Sobre'].itens['Desenvolvedor'])
+					end
+					
+					it 'deveria sair da aplicacao' do
+						@observador.instance_variable_get(:@janela_about_desenvolvedor).should_receive(:mostrar)
 					end
 					
 					after do

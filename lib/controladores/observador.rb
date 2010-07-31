@@ -11,6 +11,10 @@ module Ondas2
 				@janela.componentes[:timer].add_action_listener self
 				@janela.componentes[:barra_menu].add_action_listener self
 				@fabrica_ondas = args[:fabrica_ondas]
+				@janela_about_ondas2 = Ondas2::Visoes::JanelaAboutOndas2.new :janela_mae => @janela,
+																			 :modal => true
+				@janela_about_desenvolvedor = Ondas2::Visoes::JanelaAboutDesenvolvedor.new :janela_mae => @janela,
+																						   :modal => true
 			end
 		
 			def action_performed(evento)
@@ -21,6 +25,10 @@ module Ondas2
 					timer_disparou
 				when @janela.componentes[:barra_menu].abas['Arquivo'].itens['Sair']
 					@janela.dispose
+				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Ondas 2.0']
+					@janela_about_ondas2.mostrar
+				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Desenvolvedor']
+					@janela_about_desenvolvedor.mostrar
 				end
 			end
 			
