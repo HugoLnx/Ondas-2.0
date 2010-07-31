@@ -28,7 +28,11 @@ module Ondas2
 							@pnl.pintar_onda_com ys
 						}.should_not raise_error
 					end
-
+					
+					it 'deveria limpar a tela' do
+						@pnl.limpar
+						@pnl.instance_variable_get(:@ys).should be_nil
+					end
 				end
 			end
 			

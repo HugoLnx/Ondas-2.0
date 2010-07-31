@@ -23,6 +23,11 @@ module Ondas2
 						end
 					end
 				end
+				
+				def limpar
+					@ys = nil
+					self.repaint(0,0,self.width,self.height)
+				end
 			end
 		end
 	end

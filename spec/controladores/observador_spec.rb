@@ -7,6 +7,7 @@ module Ondas2
 				janela = mock :janela
 				janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar)})
 				janela.componentes[:btn_gerar].stub!(:add_action_listener).with any_args
+				janela.componentes[:timer].stub!(:add_action_listener).with any_args
 				fabrica_ondas = mock :fabrica_ondas
 				fabrica_ondas.stub!(:fabricar).and_return(mock(:onda))
 				lambda{
@@ -19,17 +20,14 @@ module Ondas2
 				before :all do
 					@janela = mock :janela
 					@janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar),
-																									:timer => mock(:timer)})
+															:timer => mock(:timer),
+															:pnl_des => mock(:pnl_des)})
 					@evento = mock(:evento)
 					@janela.componentes[:btn_gerar].stub!(:add_action_listener).with any_args
+					@janela.componentes[:timer].stub!(:add_action_listener).with any_args
 					@fabrica_ondas = mock :fabrica_ondas
 					@observador = Observador.new :janela => @janela,
 												 :fabrica_ondas => @fabrica_ondas
-					@animador = mock(:animador)
-					@observador.instance_variable_set(:@animador,@animador)
-					@classe_animador = Ondas2::Modelos::InfraE::Animador = mock(:classe_animador)
-					@novo_animador = mock(:novo_animador)
-					
 					@onda = mock(:onda)
 				end
 				
@@ -67,7 +65,7 @@ module Ondas2
 						end
 						
 						it 'deveria providenciar a fabricacao de uma onda, o desaparecimento das notificacoes de erro, a atualizacao dos campos de texto e a reinicializacao do timer' do
-							@janela.should_receive :preparar_para_nova_onda
+							@janela.should_receive :prepara_reinicializacao_do_timer
 							@fabrica_ondas.should_receive(:fabrica_onda_com).
 								with({
 									:amplitude => '40',
@@ -83,7 +81,7 @@ module Ondas2
 									  :velocidade => 200.0,
 									  :frequencia => 10.0,
 									  :periodo => 0.1})
-								@janela.should_receive :iniciar_visualizacao_de_onda
+								@janela.should_receive :reinicia_timer
 								
 						end
 						
@@ -110,7 +108,7 @@ module Ondas2
 						end
 						
 						it 'deveria providenciar a fabricacao de uma onda, notificar o erro, reiniciar e parar o timer' do				
-							@janela.should_receive :preparar_para_nova_onda
+							@janela.should_receive :prepara_reinicializacao_do_timer
 							@fabrica_ondas.should_receive(:fabrica_onda_com).
 								with({
 									:amplitude => '',
@@ -130,14 +128,18 @@ module Ondas2
 				end
 				context 'ao receber um sinal do timer' do
 					before :all do
-						@evento.stub!(:source).and_return(@janela.componentes[:btn_gerar])
+						@evento.stub!(:source).and_return(@janela.componentes[:timer])
 						@janela.componentes[:timer].stub!(:tempo).and_return(0.0)
 						@ys = mock :ys
+						@janela.componentes[:pnl_des].stub!(:width).and_return(100)
+						@onda.stub!(:gerar_ys).with(:tempo => @janela.componentes[:timer].tempo,
+													:x_max => @janela.componentes[:pnl_des].width).and_return(@ys)
+						@observador.instance_variable_set(:@onda, @onda)
 					end
 					
-					it 'deveria gerar os ys e deveria repintar o painel' do
-						@onda.stub!(:gerar_ys).with(:tempo => @janela.componentes[:timer].tempo).and_return(@ys)
+					it 'deveria repintar o painel e mandar o timer incrementar_tempo' do
 						@janela.componentes[:pnl_des].should_receive(:pintar_onda_com).with(@ys)
+						@janela.componentes[:timer].should_receive(:incrementar_tempo)
 					end
 					
 					after do

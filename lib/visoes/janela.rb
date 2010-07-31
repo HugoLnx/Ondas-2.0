@@ -32,6 +32,7 @@ module Ondas2
 					#thread.start
 					@pnl_des.background = Color::WHITE
 					@pnl_des.border = BorderFactory.create_line_border(Color::BLACK)
+					@timer = Helpers::PainelTimer.new :delay => 50
 				
 					@btn_gerar = JButton.new 'Gerar Onda'
 				end
@@ -48,6 +49,7 @@ module Ondas2
 							aba_about.add_item 'Desenvolvedor'
 						end
 					end
+					self.jmenu_bar = @barra_menu
 				end
 				
 				def criar_labels
@@ -99,7 +101,9 @@ module Ondas2
 					:txtf_per => @txtf_per,
 					
 					:btn_gerar => @btn_gerar,
-					:pnl_des => @pnl_des
+					:pnl_des => @pnl_des,
+					
+					:timer => @timer
 				}
 			end
 			
@@ -127,6 +131,15 @@ module Ondas2
 				@txtf_vel.text = novo_valor_para[:velocidade].to_s
 				@txtf_freq.text = novo_valor_para[:frequencia].to_s
 				@txtf_per.text = novo_valor_para[:periodo].to_s
+			end
+			
+			def prepara_reinicializacao_do_timer
+				@timer.stop
+				@pnl_des.limpar
+			end
+			
+			def reinicia_timer
+				@timer.start
 			end
 		end
 	end

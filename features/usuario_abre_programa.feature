@@ -8,7 +8,7 @@ Funcionalidade: Usuario abre o programa
 	Cenario: Usuario abre a janela
 		Dado que inicio o programa
 		E devo vizualizar a "JLabel" "Desenho da Onda"
-		E devo vizualizar o "PainelDesenho" "desenho"
+		E devo vizualizar o "PainelVisualizacao" "desenho"
 		E devo vizualizar a "JLabel" "Amplitude"
 		E devo vizualizar o "JTextField" "amplitude"
 		E devo vizualizar a "JLabel" "Lambda"
