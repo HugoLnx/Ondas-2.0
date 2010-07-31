@@ -9,6 +9,7 @@ module Ondas2
 				@janela = args[:janela]
 				@janela.componentes[:btn_gerar].add_action_listener self
 				@janela.componentes[:timer].add_action_listener self
+				@janela.componentes[:barra_menu].add_action_listener self
 				@fabrica_ondas = args[:fabrica_ondas]
 			end
 		
@@ -18,6 +19,8 @@ module Ondas2
 					clicou_botao_gerar
 				when @janela.componentes[:timer]
 					timer_disparou
+				when @janela.componentes[:barra_menu].abas['Arquivo'].itens['Sair']
+					@janela.dispose
 				end
 			end
 			

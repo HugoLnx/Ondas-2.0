@@ -33,9 +33,21 @@ module Ondas2
 							end
 						end
 					end
-			
-					it 'deveria ter 3 menu' do
-						@barra_menu.should have(3).sub_elements
+					
+					it 'deveria ter uma hash com seus abas' do
+						@barra_menu.instance_variable_get(:@abas).should be_a Hash
+					end
+					
+					it 'deveria ter um reader para sua hash de abas' do
+						lambda{@barra_menu.abas}.should_not raise_error
+					end
+					
+					it 'deveria ter 3 abas' do
+						@barra_menu.should have(3).abas
+					end
+					
+					it 'deveria poder adicionar um action listener aos itens de seus submenus' do
+						lambda{@barra_menu.add_action_listener mock(:action_listener)}.should_not raise_error
 					end
 				end
 			end

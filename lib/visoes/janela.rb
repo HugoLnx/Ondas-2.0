@@ -27,9 +27,6 @@ module Ondas2
 					criar_labels
 					criar_text_fields
 					@pnl_des = Ondas2::Visoes::Helpers::PainelVisualizacao.new
-					#@pnl_des.janela_mae = self
-					#thread = JThread.new @pnl_des
-					#thread.start
 					@pnl_des.background = Color::WHITE
 					@pnl_des.border = BorderFactory.create_line_border(Color::BLACK)
 					@timer = Helpers::PainelTimer.new :delay => 50
@@ -103,7 +100,9 @@ module Ondas2
 					:btn_gerar => @btn_gerar,
 					:pnl_des => @pnl_des,
 					
-					:timer => @timer
+					:timer => @timer,
+					
+					:barra_menu => @barra_menu
 				}
 			end
 			

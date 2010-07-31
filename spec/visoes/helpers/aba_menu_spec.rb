@@ -24,9 +24,17 @@ module Ondas2
 							am.add_item 'item3'
 						end
 					end
+					
+					it 'deveria ter uma hash com seus itens' do
+						@aba_menu.instance_variable_get(:@itens).should be_a Hash
+					end
+					
+					it 'deveria ter um reader para sua hash de itens' do
+						lambda{@aba_menu.itens}.should_not raise_error
+					end
 			
 					it 'deveria ter 3 itens' do
-						@aba_menu.should have(3).menu_components
+						@aba_menu.should have(3).itens
 					end
 				end
 			end
