@@ -140,6 +140,11 @@ module Ondas2
 			def reinicia_timer
 				@timer.start
 			end
+			
+			def dispose
+				super
+				@timer.stop
+			end
 		end
 	end
 end
