@@ -26,9 +26,9 @@ module Ondas2
 					criar_menu
 					criar_labels
 					criar_text_fields
-					@pnl_des = Ondas2::Visoes::Helpers::PainelVisualizacao.new
-					@pnl_des.background = Color::WHITE
-					@pnl_des.border = BorderFactory.create_line_border(Color::BLACK)
+					@pnl_vis = Ondas2::Visoes::Helpers::PainelVisualizacao.new
+					@pnl_vis.background = Color::WHITE
+					@pnl_vis.border = BorderFactory.create_line_border(Color::BLACK)
 					@timer = Helpers::PainelTimer.new :delay => 50
 				
 					@btn_gerar = JButton.new 'Gerar Onda'
@@ -70,7 +70,7 @@ module Ondas2
 			
 			def posicionar_componentes
 				posicionar_nos_sentidos :norte => @lbl_des_onda,
-										:centro => @pnl_des,
+										:centro => @pnl_vis,
 										:sul => Helpers::FormularioOnda.new(:componentes => self.componentes)
 			end
 			
@@ -98,7 +98,7 @@ module Ondas2
 					:txtf_per => @txtf_per,
 					
 					:btn_gerar => @btn_gerar,
-					:pnl_des => @pnl_des,
+					:pnl_vis => @pnl_vis,
 					
 					:timer => @timer,
 					
@@ -134,7 +134,7 @@ module Ondas2
 			
 			def prepara_reinicializacao_do_timer
 				@timer.stop
-				@pnl_des.limpar
+				@pnl_vis.limpar
 			end
 			
 			def reinicia_timer

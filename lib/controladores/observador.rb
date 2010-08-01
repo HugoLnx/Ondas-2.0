@@ -46,8 +46,8 @@ module Ondas2
 			
 			def timer_disparou
 				ys = @onda.gerar_ys :tempo => @janela.componentes[:timer].tempo,
-									:x_max => @janela.componentes[:pnl_des].width
-				@janela.componentes[:pnl_des].pintar_onda_com ys
+									:x_max => @janela.componentes[:pnl_vis].width
+				@janela.componentes[:pnl_vis].pintar_onda_com ys
 				@janela.componentes[:timer].incrementar_tempo
 			end
 			
