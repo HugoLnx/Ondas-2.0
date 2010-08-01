@@ -1,5 +1,4 @@
 aqui = File.dirname __FILE__
-java_classes_dir = File.join aqui, '../java'
 $LOAD_PATH << aqui
 
 require 'java'
@@ -29,11 +28,17 @@ java_import java.awt.GridBagConstraints
 java_import java.awt.geom.Line2D
 java_import java.awt.event.ActionListener
 
-# Dando require de todas as classes do diretorio bin
-ext = File.extname(__FILE__)
-requiridos = Dir[File.join(aqui,"**/*#{ext}")]
-requiridos.delete_if{|path| path.include? "/ondas2#{ext}" or path.include? "main#{ext}" or path.include? "BasicLinkButton" or path.include? "JLinkButton"}
-requiridos.each do |class_arq|
-	requirido = class_arq.slice(/#{aqui}\/(.*)#{ext}$/,1)
-	require requirido
-end
+require 'controladores/observador'
+require 'modelos/onda'
+require 'modelos/infraestrutura/app'
+require 'modelos/infraestrutura/fabrica_ondas'
+require 'modelos/infraestrutura/float'
+require 'modelos/infraestrutura/onda_exception'
+require 'visoes/janela'
+require 'visoes/janela_about_desenvolvedor'
+require 'visoes/janela_about_ondas2'
+require 'visoes/helpers/aba_menu'
+require 'visoes/helpers/barra_menu'
+require 'visoes/helpers/formulario_onda'
+require 'visoes/helpers/painel_timer'
+require 'visoes/helpers/painel_visualizacao'
