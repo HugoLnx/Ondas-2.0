@@ -24,7 +24,7 @@ module Ondas2
 				when @janela.componentes[:timer]
 					timer_disparou
 				when @janela.componentes[:barra_menu].abas['Arquivo'].itens['Sair']
-					@janela.dispose
+					finalizar_aplicacao
 				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Ondas 2.0']
 					@janela_about_ondas2.mostrar
 				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Desenvolvedor']
@@ -49,6 +49,12 @@ module Ondas2
 									:x_max => @janela.componentes[:pnl_des].width
 				@janela.componentes[:pnl_des].pintar_onda_com ys
 				@janela.componentes[:timer].incrementar_tempo
+			end
+			
+			def finalizar_aplicacao
+				@janela_about_ondas2.dispose
+				@janela_about_desenvolvedor.dispose
+				@janela.dispose
 			end
 		end
 	end
