@@ -1,7 +1,6 @@
 aqui = File.dirname __FILE__
 java_classes_dir = File.join aqui, '../java'
 $LOAD_PATH << aqui
-$LOAD_PATH << java_classes_dir
 
 require 'java'
 
@@ -19,7 +18,6 @@ java_import javax.swing.JMenuItem
 java_import javax.swing.JPanel
 java_import javax.swing.JTextField
 java_import javax.swing.Timer
-java_import java.net.URI
 
 java_import java.awt.BorderLayout
 java_import java.awt.Color
@@ -30,10 +28,6 @@ java_import java.awt.GridBagLayout
 java_import java.awt.GridBagConstraints
 java_import java.awt.geom.Line2D
 java_import java.awt.event.ActionListener
-
-
-java_import java.lang.Runnable
-JThread = java.lang.Thread
 
 # Dando require de todas as classes do diretorio bin
 ext = File.extname(__FILE__)

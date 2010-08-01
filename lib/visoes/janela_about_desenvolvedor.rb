@@ -10,7 +10,6 @@ module Ondas2
 			
 			def inicializar_atributos
 				self.title = 'Sobre Hugo Roque'
-				#self.set_size 225,160
 				self.resizable = false
 				self.default_close_operation = JFrame::HIDE_ON_CLOSE
 				self.content_pane.layout = BorderLayout.new
