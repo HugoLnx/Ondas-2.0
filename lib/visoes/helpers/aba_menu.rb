@@ -9,8 +9,9 @@ module Ondas2
 					yield(self)
 				end
 		
-				def add_item(texto_item)
+				def add_item(texto_item,desabilitado=false)
 					novo_item = JMenuItem.new texto_item
+					novo_item.enabled = false if desabilitado
 					@itens[texto_item] = novo_item
 					self.add novo_item
 				end

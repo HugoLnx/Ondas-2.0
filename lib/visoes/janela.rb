@@ -37,8 +37,8 @@ module Ondas2
 				def criar_menu
 					@barra_menu = Ondas2::Visoes::Helpers::BarraMenu.new do |barra|
 						barra.add_aba 'Arquivo' do |arq_aba|
-							arq_aba.add_item 'Salvar como...'
-							arq_aba.add_item 'Visualizacao Externa'
+							arq_aba.add_item 'Salvar como...', :desabilitado
+							arq_aba.add_item 'Visualizacao Externa', :desabilitado
 							arq_aba.add_item 'Sair'
 						end
 						barra.add_aba 'Sobre' do |aba_about|
