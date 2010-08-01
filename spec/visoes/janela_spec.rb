@@ -68,8 +68,8 @@ module Ondas2
 				it 'deveria preparar para reinicialização do timer' do
 					timer = @j.instance_variable_get :@timer
 					timer.should_receive :stop
-					pnl_des = @j.instance_variable_get :@pnl_des
-					pnl_des.should_receive :limpar
+					pnl_vis = @j.instance_variable_get :@pnl_vis
+					pnl_vis.should_receive :limpar
 					@j.prepara_reinicializacao_do_timer
 				end
 				

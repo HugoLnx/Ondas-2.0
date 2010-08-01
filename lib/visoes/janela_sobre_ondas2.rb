@@ -1,6 +1,6 @@
 module Ondas2
 	module Visoes
-		class JanelaAboutOndas2 < JDialog
+		class JanelaSobreOndas2 < JDialog
 			def initialize(args=[])
 				super args[:janela_mae],args[:modal]
 				inicializar_atributos

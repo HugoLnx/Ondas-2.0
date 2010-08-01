@@ -4,10 +4,10 @@ module Ondas2
 	module Controladores
 		describe 'Um Observador' do
 			before :all do
-				Ondas2::Visoes::JanelaAboutOndas2 = mock(:classe_janela_about_ondas2)
-				Ondas2::Visoes::JanelaAboutOndas2.stub!(:new).with(any_args).and_return(mock(:janela_about_ondas2))
-				Ondas2::Visoes::JanelaAboutDesenvolvedor = mock(:classe_janela_about_desenvolvedor)
-				Ondas2::Visoes::JanelaAboutDesenvolvedor.stub!(:new).with(any_args).and_return(mock(:janela_about_desenvolvedor))
+				Ondas2::Visoes::JanelaSobreOndas2 = mock(:classe_janela_sobre_ondas2)
+				Ondas2::Visoes::JanelaSobreOndas2.stub!(:new).with(any_args).and_return(mock(:janela_sobre_ondas2))
+				Ondas2::Visoes::JanelaSobreDesenvolvedor = mock(:classe_janela_sobre_desenvolvedor)
+				Ondas2::Visoes::JanelaSobreDesenvolvedor.stub!(:new).with(any_args).and_return(mock(:janela_sobre_desenvolvedor))
 			end
 			it 'deveria ser instanciavel' do
 				janela = mock :janela
@@ -30,7 +30,7 @@ module Ondas2
 					@janela = mock :janela
 					@janela.stub!(:componentes).and_return({:btn_gerar => mock(:btn_gerar),
 															:timer => mock(:timer),
-															:pnl_des => mock(:pnl_des),
+															:pnl_vis => mock(:pnl_vis),
 															:barra_menu => mock(:barra_menu)})
 					@evento = mock(:evento)
 					@janela.componentes[:btn_gerar].stub!(:add_action_listener).with any_args
@@ -148,14 +148,14 @@ module Ondas2
 						@evento.stub!(:source).and_return(@janela.componentes[:timer])
 						@janela.componentes[:timer].stub!(:tempo).and_return(0.0)
 						@ys = mock :ys
-						@janela.componentes[:pnl_des].stub!(:width).and_return(100)
+						@janela.componentes[:pnl_vis].stub!(:width).and_return(100)
 						@onda.stub!(:gerar_ys).with(:tempo => @janela.componentes[:timer].tempo,
-													:x_max => @janela.componentes[:pnl_des].width).and_return(@ys)
+													:x_max => @janela.componentes[:pnl_vis].width).and_return(@ys)
 						@observador.instance_variable_set(:@onda, @onda)
 					end
 					
 					it 'deveria repintar o painel e mandar o timer incrementar_tempo' do
-						@janela.componentes[:pnl_des].should_receive(:pintar_onda_com).with(@ys)
+						@janela.componentes[:pnl_vis].should_receive(:pintar_onda_com).with(@ys)
 						@janela.componentes[:timer].should_receive(:incrementar_tempo)
 					end
 					
@@ -186,7 +186,7 @@ module Ondas2
 					end
 					
 					it 'deveria sair da aplicacao' do
-						@observador.instance_variable_get(:@janela_about_ondas2).should_receive(:mostrar)
+						@observador.instance_variable_get(:@janela_sobre_ondas2).should_receive(:mostrar)
 					end
 					
 					after do
@@ -200,7 +200,7 @@ module Ondas2
 					end
 					
 					it 'deveria sair da aplicacao' do
-						@observador.instance_variable_get(:@janela_about_desenvolvedor).should_receive(:mostrar)
+						@observador.instance_variable_get(:@janela_sobre_desenvolvedor).should_receive(:mostrar)
 					end
 					
 					after do

@@ -11,7 +11,7 @@ module Ondas2
 			end
 
 			def adicionar_componentes
-				self.adiciona @pnl_des, 'desenho'
+				self.adiciona @pnl_vis, 'desenho'
 				self.adiciona @barra_menu, 'barra_menu'
 				self.adiciona @lbl_des_onda, 'Desenho da Onda'
 				self.adiciona @lbl_amp, 'Amplitude'

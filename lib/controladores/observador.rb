@@ -11,9 +11,9 @@ module Ondas2
 				@janela.componentes[:timer].add_action_listener self
 				@janela.componentes[:barra_menu].add_action_listener self
 				@fabrica_ondas = args[:fabrica_ondas]
-				@janela_about_ondas2 = Ondas2::Visoes::JanelaAboutOndas2.new :janela_mae => @janela,
+				@janela_sobre_ondas2 = Ondas2::Visoes::JanelaSobreOndas2.new :janela_mae => @janela,
 																			 :modal => true
-				@janela_about_desenvolvedor = Ondas2::Visoes::JanelaAboutDesenvolvedor.new :janela_mae => @janela,
+				@janela_sobre_desenvolvedor = Ondas2::Visoes::JanelaSobreDesenvolvedor.new :janela_mae => @janela,
 																						   :modal => true
 			end
 		
@@ -24,11 +24,11 @@ module Ondas2
 				when @janela.componentes[:timer]
 					timer_disparou
 				when @janela.componentes[:barra_menu].abas['Arquivo'].itens['Sair']
-					finalizar_aplicacao
+					@janela.dispose
 				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Ondas 2.0']
-					@janela_about_ondas2.mostrar
+					@janela_sobre_ondas2.mostrar
 				when @janela.componentes[:barra_menu].abas['Sobre'].itens['Desenvolvedor']
-					@janela_about_desenvolvedor.mostrar
+					@janela_sobre_desenvolvedor.mostrar
 				end
 			end
 			
@@ -51,11 +51,6 @@ module Ondas2
 				@janela.componentes[:timer].incrementar_tempo
 			end
 			
-			def finalizar_aplicacao
-				@janela_about_ondas2.dispose
-				@janela_about_desenvolvedor.dispose
-				@janela.dispose
-			end
 		end
 	end
 end

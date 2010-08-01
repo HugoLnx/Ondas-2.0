@@ -3,5 +3,5 @@ TESTES*
 *.class
 *~
 *.jar
-package/*
+bin/*
 *.ico
